@@ -1,0 +1,2 @@
+lsof:
+  pkg.installed
