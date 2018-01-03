@@ -3,5 +3,5 @@ base:
     - basics     
     - salt-minion
     - timezone     
-    - thermal-recorder
+    - thermal-recorder/main
     - watchdog
