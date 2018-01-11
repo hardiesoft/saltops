@@ -1,8 +1,11 @@
 base:
   '*':
     - basics     
-    - salt-minion
     - timezone     
-    - watchdog
-    - thermal-recorder/main
-    - thermal-uploader/main
+
+  # Raspberry Pis
+  'not server-*':
+    - pi/salt-minion
+    - pi/watchdog
+    - pi/thermal-recorder/main
+    - pi/thermal-uploader/main

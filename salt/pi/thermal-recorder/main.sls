@@ -31,7 +31,7 @@ recorder-symlink:
 # Ensure the templated recoder configuration is up to date.
 /etc/thermal-recorder.yaml:
   file.managed:
-    - source: salt://thermal-recorder/thermal-recorder.yaml.jinja
+    - source: salt://pi/thermal-recorder/thermal-recorder.yaml.jinja
     - template: jinja
 
 # TODO: install the server file from the release

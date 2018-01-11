@@ -27,12 +27,12 @@ restart-systemd:
 
 /usr/local/bin/3g-watchdog:
   file.managed:
-    - source: salt://3g-watchdog/3g-watchdog
+    - source: salt://pi/3g-watchdog/3g-watchdog
     - mode: 755
 
 /etc/systemd/system/3g-watchdog.service:
   file.managed:
-    - source: salt://3g-watchdog/3g-watchdog.service
+    - source: salt://pi/3g-watchdog/3g-watchdog.service
 
 ########################################################
 # Remove watchdog daemon where it had been installed
