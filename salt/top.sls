@@ -10,6 +10,7 @@ base:
 
   # Raspberry Pis
   'not server-*':
+    - pi/basics
     - pi/salt-minion
     - pi/watchdog
     - pi/thermal-recorder/main
