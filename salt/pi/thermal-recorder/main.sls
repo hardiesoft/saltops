@@ -3,6 +3,9 @@
 {% set download_base_url = "https://github.com/TheCacophonyProject/thermal-recorder/releases/download" %}
 {% set extract_base_dir = "/opt/cacophony/thermal-recorder" %}
 
+/var/spool/cptv:
+  file.directory
+
 check-recorder-version:
   cmd.run:
     - name: test "`{{ bin }} --version`" = '{{ version }}' || echo 'changed=true'
@@ -34,7 +37,20 @@ recorder-symlink:
     - source: salt://pi/thermal-recorder/thermal-recorder.yaml.jinja
     - template: jinja
 
-# TODO: install the server file from the release
+# Install a symlink to the systemd service file.
+recorder-service-file:
+  file.symlink:
+    - requires:
+      - extract-uploader
+    - name: /etc/systemd/system/thermal-recorder.service
+    - target: {{ extract_base_dir }}/{{ version }}/thermal-recorder.service
+    - force: True
+
+recorder-daemon-reload:
+  cmd.wait:
+    - name: "systemctl daemon-reload"
+    - watch:
+       - recorder-service-file
 
 # Ensure the recorder service is running. The service gets restarted if the
 # symlink or configuration changes.
@@ -45,3 +61,4 @@ thermal-recorder-service:
     - watch:
       - /etc/thermal-recorder.yaml 
       - recorder-symlink
+      - recorder-service-file

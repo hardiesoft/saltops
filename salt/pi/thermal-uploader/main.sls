@@ -28,7 +28,20 @@ uploader-symlink:
     - target: {{ extract_base_dir }}/{{ version }}/thermal-uploader
     - force: True
 
-# TODO: install the systemd service file from the release
+# Install a symlink to the systemd service file.
+uploader-service-file:
+  file.symlink:
+    - requires: 
+      - extract-uploader
+    - name: /etc/systemd/system/thermal-uploader.service
+    - target: {{ extract_base_dir }}/{{ version }}/thermal-uploader.service
+    - force: True
+
+uploader-daemon-reload:
+  cmd.wait:
+    - name: "systemctl daemon-reload"
+    - watch:
+       - uploader-service-file
 
 # Ensure the uploader service is running. The service gets restarted if the
 # symlink or configuration changes.
@@ -37,4 +50,5 @@ thermal-uploader-service:
     - name: thermal-uploader
     - enable: True
     - watch:
+      - uploader-service-file
       - uploader-symlink
