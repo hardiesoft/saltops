@@ -13,13 +13,15 @@ import salt.utils.event
 import sys
 import time
 
+# How often to check for dead minions to mark as such.
+UPDATE_INTERVAL = timedelta(seconds=30)
 
 # Minions must ping or re-auth at least this period in order to be considered
 # alive.
-PRESENCE_INTERVAL = 5 * 60
+PRESENCE_INTERVAL = timedelta(minutes=5)
 
-# How often to check for dead minions to mark as such.
-UPDATE_INTERVAL = 30
+# Stop writing "down" events if minion has been continuously dead for this long.
+MAX_DOWN_INTERVAL = timedelta(days=10)
 
 
 def main():
@@ -34,19 +36,21 @@ def main():
 
     # Give extra time on watcher startup for minions to report in to avoid
     # marking minions as down if the watcher has been down for a while.
-    last_update_t = datetime.now() + timedelta(seconds=UPDATE_INTERVAL)
+    last_update_t = datetime.now() + UPDATE_INTERVAL
 
     print "listening for events"
     up_count = 0
+    update_seconds = UPDATE_INTERVAL.total_seconds()
+    timeout_seconds = update_seconds / 2
     while True:
-        event = listener.get_event(wait=UPDATE_INTERVAL/2, full=True)
+        event = listener.get_event(wait=timeout_seconds, full=True)
         minion_id, ts = process_event(event)
         if minion_id:
             up_count += 1 
             write_presence(influx, minion_id, True, ts)
 
         now = datetime.now()
-        if now - last_update_t > timedelta(seconds=UPDATE_INTERVAL):
+        if now - last_update_t > timedelta(seconds=update_seconds):
             print "{} up events received".format(up_count)
             process_down_minions(influx)
             last_update_t = now
@@ -88,18 +92,27 @@ def write_presence(client, minion_id, up, stamp=None):
 
 
 def process_down_minions(client):
-    threshold_t = datetime.now() - timedelta(seconds=PRESENCE_INTERVAL)
-    threshold_epoch = time.mktime(threshold_t.timetuple())
+    now = datetime.now()
+    presence_update_t = datetime_to_t(now - PRESENCE_INTERVAL)
+    max_down_t = datetime_to_t(now - MAX_DOWN_INTERVAL)
 
     results = client.query(
         "select device, last(up) as up from presence group by device",
         epoch='s')
     for r in results.get_points():
-        # A "down" event is written event for devices which are already marked
-        # as down so that Grafana will still see them even when displaying a
-        # small time range.
-        if r['time'] < threshold_epoch:
+        # A "down" event is written event for even for minions which are
+        # already marked as down so that Grafana will still see them even when
+	    # displaying a small time range.
+        # 
+        # However, if a minion has been down for over some long time
+        # (MAX_DOWN_INTERVAL) then stop writing out down records so that
+        # permanently dead minions eventually disappear from the dashboard.
+        if max_down_t < r['time'] < presence_update_t:
             write_presence(client, r['device'], False)
+
+
+def datetime_to_t(dt):
+    return time.mktime(dt.timetuple())
 
 
 if __name__ == '__main__':
