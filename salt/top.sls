@@ -8,6 +8,10 @@ base:
     - server/basics
     - server/unattended-upgrades
 
+  # Production servers
+  'server-prod-*':
+    - server/telegraf/main
+
   # Raspberry Pis
   'not server-*':
     - pi/basics

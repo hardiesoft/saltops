@@ -1,0 +1,145 @@
+# Global tags can be specified here in key="value" format.
+[global_tags]
+  # dc = "us-east-1" # will tag all metrics with dc=us-east-1
+  # rack = "1a"
+  ## Environment variables can be used as tags, and throughout the config file
+  # user = "$USER"
+
+# Configuration for telegraf agent
+[agent]
+  interval = "10s"
+  round_interval = false
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_jitter = "0s"
+  precision = ""
+  debug = false
+  quiet = false
+  logfile = ""
+  hostname = "{{ grains['id'].split('-', 1)[-1] if grains['id'].startswith('server-') else grains['id'] }}"
+  omit_hostname = false
+
+###############################################################################
+#                            OUTPUT PLUGINS                                   #
+###############################################################################
+
+# Configuration for influxdb server to send metrics to
+[[outputs.influxdb]]
+  urls = ["http://10.0.0.3:8086"]
+  database = "server_metrics" 
+  retention_policy = ""
+  write_consistency = "any"
+  timeout = "5s"
+
+###############################################################################
+#                            INPUT PLUGINS                                    #
+###############################################################################
+
+# Read metrics about cpu usage
+[[inputs.cpu]]
+  ## Whether to report per-cpu stats or not
+  percpu = true
+
+  ## Whether to report total system cpu stats or not
+  totalcpu = true
+
+  ## If true, collect raw CPU time metrics.
+  collect_cpu_time = false
+
+  ## If true, compute and report the sum of all non-idle CPU states.
+  report_active = false
+ 
+  ## Comment this line if you want the raw CPU time metrics
+  fielddrop = ["time_*"]
+
+
+# Read metrics about disk usage by mount point
+[[inputs.disk]]
+  ## By default, telegraf gather stats for all mountpoints.
+  ## Setting mountpoints will restrict the stats to the specified mountpoints.
+  # mount_points = ["/"]
+
+ 
+  ## Comment this line if you want the raw CPU time metrics
+  fielddrop = ["time_*"]
+
+
+# Read metrics about disk usage by mount point
+[[inputs.disk]]
+  ## By default, telegraf gather stats for all mountpoints.
+  ## Setting mountpoints will restrict the stats to the specified mountpoints.
+  # mount_points = ["/"]
+
+  ## Ignore some mountpoints by filesystem type. For example (dev)tmpfs (usually
+  ## present on /run, /var/run, /dev/shm or /dev).
+  ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
+
+
+# Read metrics about disk IO by device
+[[inputs.diskio]]
+  ## By default, telegraf will gather stats for all devices including
+  ## disk partitions.
+  ## Setting devices will restrict the stats to the specified devices.
+  # devices = ["sda", "sdb"]
+  ## Uncomment the following line if you need disk serial numbers.
+  # skip_serial_number = false
+  #
+  ## On systems which support it, device metadata can be added in the form of
+  ## tags.
+  ## Currently only Linux is supported via udev properties. You can view
+  ## available properties for a device by running:
+  ## 'udevadm info -q property -n /dev/sda'
+  # device_tags = ["ID_FS_TYPE", "ID_FS_USAGE"]
+  #
+  ## Using the same metadata source as device_tags, you can also customize the
+  ## name of the device via templates.
+  ## The 'name_templates' parameter is a list of templates to try and apply to
+  ## the device. The template may contain variables in the form of '$PROPERTY' or
+  ## '${PROPERTY}'. The first template which does not contain any variables not
+  ## present for the device is used as the device name tag.
+  ## The typical use case is for LVM volumes, to get the VG/LV name instead of
+  ## the near-meaningless DM-0 name.
+  # name_templates = ["$ID_FS_LABEL","$DM_VG_NAME/$DM_LV_NAME"]
+
+
+# Get kernel statistics from /proc/stat
+[[inputs.kernel]]
+  # no configuration
+
+
+# Read metrics about memory usage
+[[inputs.mem]]
+  # no configuration
+
+
+# Get the number of processes and group them by status
+[[inputs.processes]]
+  # no configuration
+
+
+# Read metrics about swap memory usage
+[[inputs.swap]]
+  # no configuration
+
+
+# Read metrics about system load & uptime
+[[inputs.system]]
+  # no configuration
+
+
+[[inputs.net]]
+  # no configuration
+
+
+[[inputs.netstat]]
+  # no configuration
+
+
+[[inputs.interrupts]]
+  # no configuration
+
+
+[[inputs.linux_sysctl_fs]]
+  # no configuration
+
