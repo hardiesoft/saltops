@@ -1,4 +1,4 @@
-{% set version = "1.2" %}
+{% set version = "1.3" %}
 {% set bin = "/usr/local/bin/thermal-recorder" %}
 {% set download_base_url = "https://github.com/TheCacophonyProject/thermal-recorder/releases/download" %}
 {% set extract_base_dir = "/opt/cacophony/thermal-recorder" %}
