@@ -17,7 +17,7 @@ base:
     - pi/basics
     - pi/salt-minion
     - pi/watchdog
-    - pi/pulseaudio
+    - pi/audio
     - pi/thermal-recorder/main
     - pi/thermal-uploader/main
     - pi/dataplicity
