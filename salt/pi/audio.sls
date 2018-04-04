@@ -12,6 +12,9 @@ alsa-utils:
 sox:
   pkg.installed
 
+libsox-fmt-mp3:
+  pkg.installed
+
 # Use ALSA directly instead of pulseaudio. Unattended usage of pulseaudio is
 # too fragile.
 pulseaudio:
