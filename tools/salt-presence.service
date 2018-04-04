@@ -8,6 +8,7 @@ User=root
 Group=root
 ExecStart=/srv/tools/salt-presence.py
 Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
