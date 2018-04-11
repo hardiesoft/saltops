@@ -9,3 +9,9 @@
 /etc/rsyslog.conf:
    file.managed:
      - source: salt://pi/rsyslog.conf
+
+/boot/cmdline.txt:
+   file.replace:
+      - pattern: "^(.(?!.*spidev.bufsiz).*)"
+      - repl: "\\1 spidev.bufsiz=65536"
+     
