@@ -17,6 +17,7 @@ base:
     - pi/basics
     - pi/salt-minion
     - pi/wpa
+    - pi/rtc/main
     - pi/watchdog
     - pi/audio
     - pi/thermal-recorder/main

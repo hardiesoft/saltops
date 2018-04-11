@@ -14,6 +14,7 @@ gpu_freq=200
 gpu_freq_min=200
 
 dtparam=i2c_arm=on
+dtoverlay=i2c-rtc,pcf8523
 dtparam=spi=on
 
 # Enable audio (loads snd_bcm2835)
