@@ -15,6 +15,7 @@ base:
   # Raspberry Pis
   'not server-*':
     - pi/basics
+    - pi/auth
     - pi/salt-minion
     - pi/wpa
     - pi/rtc/main
