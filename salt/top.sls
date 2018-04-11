@@ -16,6 +16,7 @@ base:
   'not server-*':
     - pi/basics
     - pi/salt-minion
+    - pi/wpa
     - pi/watchdog
     - pi/audio
     - pi/thermal-recorder/main
