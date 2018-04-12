@@ -14,4 +14,10 @@
    file.replace:
       - pattern: "^(.(?!.*spidev.bufsiz).*)"
       - repl: "\\1 spidev.bufsiz=65536"
+
+/usr/local/bin/change-identity:
+   file.managed:
+     - source: salt://pi/change-identity
+     - mode: 755
+
      
