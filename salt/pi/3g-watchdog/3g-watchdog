@@ -3,36 +3,44 @@
 import contextlib
 import subprocess
 import time
+import RPi.GPIO as GPIO
 
-
+MODEM_PIN = 18
 MODEM_NETDEV = 'usb0'
 
 TEST_HOSTS = [
     "8.8.8.8",
     "8.8.4.4",
-    ]
-TEST_INTERVAL_SECS = 300  # 5 mins
+]
+TEST_INTERVAL_SECS = 5 * 60
 
 
 def main():
     print("running")
+    print("turning on usb modem through PCB")
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(MODEM_PIN, GPIO.OUT)
+    GPIO.output(MODEM_PIN, GPIO.HIGH)
 
     with contextlib.suppress(KeyboardInterrupt):
-        while True:
+        while running():
             time.sleep(TEST_INTERVAL_SECS)
 
-            if is_default_route_via_dev(MODEM_NETDEV):
+            if is_defroute_via_dev(MODEM_NETDEV):
                 print("link is using USB modem")
-                if ping_hosts(TEST_HOSTS):
-                    print("link ok")
-                else:
-                    print("link NOT ok")
+                if not ping_hosts(TEST_HOSTS):
+                    print("ping tests FAILED, rebooting system")
                     reboot()
             else:
                 print("link is not using USB modem")
 
 
-def is_default_route_via_dev(netdev):
+def running():
+    "This exists to support patching during tests"
+    return True
+
+
+def is_defroute_via_dev(netdev):
     output = subprocess.check_output(["ip", "route"], universal_newlines=True)
     search = ' dev ' + netdev + ' '
     for line in output.splitlines():
@@ -56,9 +64,10 @@ def ping_host(addr):
         subprocess.check_call(
             [
                 'ping',
-                '-n', '-q',    # no DNS, quiet output
-                '-c', '1',     # just need one response
-                '-w', '30',    # wait up to 30s
+                '-n',
+                '-q',  # no DNS, quiet output
+                '-c1',  # just need one response
+                '-w30',  # wait up to 30s
                 addr,
             ],
             stdout=subprocess.DEVNULL,

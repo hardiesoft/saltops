@@ -24,6 +24,7 @@ restart-systemd:
     - watch:
       - file: /usr/local/bin/3g-watchdog
       - file: /etc/systemd/system/3g-watchdog.service
+      - python3-rpi.gpio
 
 /usr/local/bin/3g-watchdog:
   file.managed:
@@ -33,6 +34,9 @@ restart-systemd:
 /etc/systemd/system/3g-watchdog.service:
   file.managed:
     - source: salt://pi/3g-watchdog/3g-watchdog.service
+
+python3-rpi.gpio:
+  pkg.installed: []
 
 ########################################################
 # Remove watchdog daemon where it had been installed
