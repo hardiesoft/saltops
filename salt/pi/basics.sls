@@ -20,4 +20,20 @@
      - source: salt://pi/change-identity
      - mode: 755
 
-     
+hdmi-off-service-file:
+   file.managed:
+     - name: /etc/systemd/system/hdmi-off.service
+     - source: salt://pi/hdmi-off.service
+     - mode: 644
+
+hdmi-off-daemon-reload:
+  cmd.wait:
+    - name: "systemctl daemon-reload"
+    - watch:
+       - hdmi-off-service-file
+
+hdmi-off-service:
+  service.enabled:
+    - name: hdmi-off
+    - watch:
+      - hdmi-off-daemon-reload
