@@ -4,12 +4,12 @@ set_wifi_country:
     - pattern: "^country=.+"
     - repl: "country=NZ"
 
-ensure_skynet_ssid:
+ensure_bushnet_ssid:
   file.append:
     - name: /etc/wpa_supplicant/wpa_supplicant.conf
     - text: |
         network={
-            ssid="skynet"
-            psk="!!spotless-bird-morning"
+            ssid="bushnet"
+            psk="feathers"
         }
          
