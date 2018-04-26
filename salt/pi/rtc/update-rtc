@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Updates hwclock (RTC) if it is loaded and NTP is synchronized
+
+set -e
+if [ $EUID -ne 0 ]; then
+    echo "run as root"
+    exit 1
+fi
+
+if [[ -e /dev/rtc0 ]]; then
+    if timedatectl | grep -q 'NTP synchronized: yes'; then
+        echo "NTP synchronized"
+        hwclock --systohc
+        echo "Updated RTC"
+    else
+        echo "NTP not synchronized"
+    fi
+else
+    echo "No RTC detected."
+fi
+

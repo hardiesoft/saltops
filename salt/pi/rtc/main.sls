@@ -37,3 +37,7 @@ rtc-service:
     - watch:
       - rtc-daemon-reload
 
+/etc/cron.daily/update-rtc:
+  file.managed:
+    - mode: 755
+    - source: salt://pi/rtc/update-rtc
