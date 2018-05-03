@@ -7,6 +7,7 @@ base:
   'server-*':
     - server/basics
     - server/unattended-upgrades
+    - server/salt
 
   # Production servers
   'server-prod-*':
