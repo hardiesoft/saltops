@@ -1,7 +1,18 @@
+# Support NTFS filesystems (for USB drives)
+ntfs-3g:
+  pkg.installed: []
+
+# Mount point for USB drives to write CPTV files to
+cp-volume-mount:
+  file.append:
+    - name: "/etc/fstab"
+    - text: 
+      - "LABEL=cp /media/cp auto auto,nofail,noexec,nodev,noatime,nodiratime 0 2"
+
 thermal-recorder-pkg:
   cacophony.pkg_installed_from_github:
     - name: thermal-recorder
-    - version: 1.4
+    - version: 1.5
 
 /etc/thermal-recorder.yaml:
   file.managed:
@@ -28,6 +39,10 @@ leptond-service:
     - watch:
       - thermal-recorder-pkg
       - /etc/leptond.yaml 
+
+
+set-thermal-recorder-output:
+  service.enabled: []
 
 # Remove files from old thermal-recorder versions
 /opt/cacophony/thermal-recorder:
