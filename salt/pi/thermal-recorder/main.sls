@@ -1,6 +1,10 @@
-# Support NTFS filesystems (for USB drives)
-ntfs-3g:
-  pkg.installed: []
+# Install support for exFAT & NTFS filesystems (for USB drives)
+extra-filesystems:
+  pkg.installed:
+    - pkgs:
+      - exfat-fuse
+      - exfat-utils
+      - ntfs-3g
 
 # Mount point for USB drives to write CPTV files to
 cp-volume-mount:
