@@ -1,3 +1,8 @@
+thermal-recorder-pkg:
+  cacophony.pkg_installed_from_github:
+    - name: thermal-recorder
+    - version: 1.6
+
 # Install support for exFAT & NTFS filesystems (for USB drives)
 extra-filesystems:
   pkg.installed:
@@ -12,11 +17,6 @@ cp-volume-mount:
     - name: "/etc/fstab"
     - text: 
       - "LABEL=cp /media/cp auto auto,nofail,noexec,nodev,noatime,nodiratime 0 2"
-
-thermal-recorder-pkg:
-  cacophony.pkg_installed_from_github:
-    - name: thermal-recorder
-    - version: 1.5
 
 /etc/thermal-recorder.yaml:
   file.managed:
