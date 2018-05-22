@@ -26,6 +26,7 @@ def pkg_installed_from_github(name, version, systemd_reload=True):
         name=name, 
         version=version, 
         sources=[{name: source_url}],
+        refresh=False,
     )
 
     if systemd_reload and ret['result'] and ret['changes'] and not __opts__['test']:
