@@ -22,6 +22,7 @@ base:
     - pi/rtc/main
     - pi/watchdog
     - pi/audio
+    - pi/event-reporter
     - pi/thermal-recorder/main
     - pi/thermal-uploader/main
     - pi/dataplicity
