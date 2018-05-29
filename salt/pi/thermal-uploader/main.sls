@@ -1,7 +1,7 @@
 thermal-uploader-pkg:
   cacophony.pkg_installed_from_github:
     - name: thermal-uploader
-    - version: 1.3
+    - version: 1.4
 
 thermal-uploader-service:
   service.running:
