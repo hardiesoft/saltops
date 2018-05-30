@@ -21,6 +21,7 @@ base:
     - pi/wpa
     - pi/rtc/main
     - pi/watchdog
+    - pi/attiny-controller
     - pi/audio
     - pi/event-reporter
     - pi/audiobait/main
