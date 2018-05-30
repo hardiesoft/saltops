@@ -23,6 +23,7 @@ base:
     - pi/watchdog
     - pi/audio
     - pi/event-reporter
+    - pi/audiobait/main
     - pi/thermal-recorder/main
     - pi/thermal-uploader/main
     - pi/dataplicity
