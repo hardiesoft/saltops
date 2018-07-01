@@ -12,6 +12,7 @@ base:
   # Production servers
   'server-prod-*':
     - server/telegraf/main
+    - server/mail-relay/main
 
   # Raspberry Pis
   'not server-*':
