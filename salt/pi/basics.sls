@@ -37,3 +37,6 @@ hdmi-off-service:
     - name: hdmi-off
     - watch:
       - hdmi-off-daemon-reload
+
+i2c-tools:
+  pkg.installed: []
