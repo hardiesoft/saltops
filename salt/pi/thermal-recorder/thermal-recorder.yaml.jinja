@@ -32,3 +32,10 @@ window-start: '18:00'
 window-end: '08:00'
 {% endif %}
 
+# GPIO pins for the LEDs
+leds:
+    # Pin of the blue LED, indicating that the device is recording.
+    recording: "GPIO20"
+
+    # Pin of the green LED, indicating that thermal-recording is running.
+    running: "GPIO25"
