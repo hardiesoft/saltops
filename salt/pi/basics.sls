@@ -15,6 +15,10 @@
       - pattern: "^(.(?!.*spidev.bufsiz).*)"
       - repl: "\\1 spidev.bufsiz=65536"
 
+/etc/asound.conf:
+   file.managed:
+     - source: salt://pi/asound.conf
+
 /usr/local/bin/change-identity:
    file.managed:
      - source: salt://pi/change-identity

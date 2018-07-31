@@ -18,4 +18,7 @@ dtoverlay=i2c-rtc,pcf8523
 dtparam=spi=on
 
 # Enable audio (loads snd_bcm2835)
-dtparam=audio=on
+#dtparam=audio=on
+
+# Enable i2s audio chip
+dtoverlay=hifiberry-dac
