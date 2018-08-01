@@ -8,6 +8,8 @@ base:
     - server/basics
     - server/unattended-upgrades
     - server/salt
+    - server/users
+    - server/sshd/main
 
   # Production servers
   'server-prod-*':
