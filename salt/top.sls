@@ -9,12 +9,12 @@ base:
     - server/unattended-upgrades
     - server/salt
     - server/users
-    - server/sshd/main
+    - server/sshd
 
   # Production servers
   'server-prod-*':
-    - server/telegraf/main
-    - server/mail-relay/main
+    - server/telegraf
+    - server/mail-relay
 
   # Raspberry Pis
   'not server-*':
@@ -22,13 +22,13 @@ base:
     - pi/auth
     - pi/salt-minion
     - pi/wpa
-    - pi/rtc/main
+    - pi/rtc
     - pi/watchdog
     - pi/attiny-controller
     - pi/audio
     - pi/event-reporter
-    - pi/audiobait/main
-    - pi/thermal-recorder/main
-    - pi/thermal-uploader/main
+    - pi/audiobait
+    - pi/thermal-recorder
+    - pi/thermal-uploader
     - pi/dataplicity
 
