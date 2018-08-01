@@ -1,5 +1,5 @@
 # The pin to control the power to the USB plug (3G modem)
-{%- set hw_rev = salt['grains.get']('cacophony:hw:rev') | int -%}
+{% set hw_rev = salt['grains.get']('cacophony:hw:rev') | int -%}
 {%- if hw_rev >= 2 -%}
 usb_power_pin: 22
 {% else %}

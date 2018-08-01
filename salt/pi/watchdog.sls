@@ -40,7 +40,7 @@ watchdog-pkgs:
 
 /etc/cacophony/3g-watchdog.yaml:
   file.managed:
-    - source: salt://pi/3g-watchdog/3g-watchdog.yaml
+    - source: salt://pi/3g-watchdog/3g-watchdog.yaml.jinja
     - template: jinja
     - mode: 644
 
