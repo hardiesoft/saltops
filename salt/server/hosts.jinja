@@ -2,7 +2,7 @@
 {% for addr in grains['ipv4'] -%}
 {% if not addr.startswith('127') -%}
 {{ addr }}	{{ grains['host'] }}.cacophony.org.nz	{{ grains['host'] }}
-{%- endif %}
+{% endif %}
 {%- endfor %}
 
 # The following lines are desirable for IPv6 capable hosts
