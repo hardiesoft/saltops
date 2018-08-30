@@ -19,6 +19,9 @@
    file.managed:
      - source: salt://pi/asound.conf
 
+/etc/cacophony:
+   file.directory
+
 /usr/local/bin/change-identity:
    file.managed:
      - source: salt://pi/change-identity
