@@ -1,6 +1,13 @@
 # Directory to place CPTV output files.
 output-dir: "/var/spool/cptv"
 
+{% set window = salt['grains.get']('cacophony:recording-window') %}
+{%- if window -%}
+{%- set win_start, win_end = window.split('-') -%}
+window-start: '{{ win_start }}'
+window-end: '{{ win_end }}'
+{% endif %}
+
 # Minimum length to keep recording after motion is detected.
 min-secs: 10
 
@@ -28,12 +35,6 @@ motion:
     # frame appears to change. This helps avoid false positives when
     # the camera is recalibrating.
     nonzero-max-percent: 50
-
-{% if grains.get('cacophony', {}).get('recording-window') == 'night' %}
-# Just record in the evening.
-window-start: '18:00'
-window-end: '08:00'
-{% endif %}
 
 # GPIO pins for the LEDs
 leds:
