@@ -1,7 +1,7 @@
 base:
   '*':
-    - basics     
-    - timezone     
+    - basics
+    - timezone
 
   # Servers
   'server-*':
@@ -31,4 +31,4 @@ base:
     - pi/thermal-recorder
     - pi/thermal-uploader
     - pi/dataplicity
-
+    - pi/management-interface
