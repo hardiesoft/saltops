@@ -8,6 +8,11 @@ alsa-utils:
     - contents:
       - options snd-usb-audio index=1
 
+# Configuration for onboard sound
+/etc/asound.conf:
+   file.managed:
+     - source: salt://pi/audio/asound.conf
+
 # sox has the "play" tool for playing audio files
 sox:
   pkg.installed
@@ -32,4 +37,8 @@ bluez-firmware:
 
 pi-bluetooth:
   pkg.purged
+
+# Ensure audio hardware is correctly setup
+audio-hardware:
+  cacophony.init_alsa
 

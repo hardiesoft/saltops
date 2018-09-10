@@ -15,10 +15,6 @@
       - pattern: "^(.(?!.*spidev.bufsiz).*)"
       - repl: "\\1 spidev.bufsiz=65536"
 
-/etc/asound.conf:
-   file.managed:
-     - source: salt://pi/asound.conf
-
 /etc/cacophony:
    file.directory
 
