@@ -12,6 +12,9 @@ def pkg_installed_from_github(name, version, systemd_reload=True):
     systemd.
     """
 
+    # Guard against versions being converted to floats in YAML parsing.
+    assert isinstance(version, basestring), "version must be a string"
+
     installed_version = __salt__['pkg.version'](name)
     if installed_version == version:
         return {
