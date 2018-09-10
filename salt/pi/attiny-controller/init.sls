@@ -1,7 +1,7 @@
 attiny-controller-pkg:
   cacophony.pkg_installed_from_github:
     - name: attiny-controller
-    - version: 2.0
+    - version: "2.0"
 
 attiny-controller-service:
   service.running:
