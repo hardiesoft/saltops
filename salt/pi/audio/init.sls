@@ -11,7 +11,7 @@ alsa-utils:
 # Configuration for onboard sound
 /etc/asound.conf:
    file.managed:
-     - source: salt://pi/asound.conf
+     - source: salt://pi/audio/asound.conf
 
 # sox has the "play" tool for playing audio files
 sox:
