@@ -1,12 +1,8 @@
+# Socket where thermal camera frames will be received from.
+frame-input: "/var/run/lepton-frames"
+
 # Directory to place CPTV output files.
 output-dir: "/var/spool/cptv"
-
-{% set window = salt['grains.get']('cacophony:recording-window') %}
-{%- if window -%}
-{%- set win_start, win_end = window.split('-') -%}
-window-start: '{{ win_start }}'
-window-end: '{{ win_end }}'
-{% endif %}
 
 # Time to record before motion was detected.
 preview-secs: 1
@@ -19,6 +15,13 @@ max-secs: 600
 
 # Mininum disk space required to record, in MB
 min-disk-space: 200
+
+{% set window = salt['grains.get']('cacophony:recording-window') %}
+{%- if window -%}
+{%- set win_start, win_end = window.split('-') -%}
+window-start: '{{ win_start }}'
+window-end: '{{ win_end }}'
+{% endif %}
 
 # Motion detection parameters
 motion:
@@ -62,4 +65,21 @@ motion:
 
     # Verbose gives lots of information on which pixels are detected as changed.
     verbose: false
+
+# Throttling of recording (for wind or animal in trap)
+throttler:
+    # set to false if you do not want to apply throttling
+    apply-throttling: true
+
+    # start throttling after this many seconds of recording
+    throttle-after-secs: 600
+
+    # record an occasional sparse recording after this many seconds of throttling during which
+    # time no recordings have been made
+    sparse-after-secs: 3600
+
+    # max length of sparse recording should be.
+    # if =0 then no occasional recordings will be made
+    # if value is less than the min recording length then it will set to min recording length
+    sparse-length-secs: 30
 
