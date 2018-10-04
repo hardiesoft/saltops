@@ -8,10 +8,10 @@ attiny-controller-service:
     - name: attiny-controller
     - enable: True
     - watch:
+      - /etc/cacophony/attiny.yaml
       - attiny-controller-pkg
 
 /etc/cacophony/attiny.yaml:
   file.managed:
     - source: salt://pi/attiny-controller/attiny.yaml.jinja
     - template: jinja
-
