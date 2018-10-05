@@ -1,16 +1,4 @@
 /var/log/syslog
-{
-	rotate 31
-	daily
-	missingok
-	notifempty
-	delaycompress
-	compress
-	postrotate
-		invoke-rc.d rsyslog rotate > /dev/null
-	endscript
-}
-
 /var/log/mail.info
 /var/log/mail.warn
 /var/log/mail.err
