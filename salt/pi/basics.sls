@@ -10,6 +10,10 @@
    file.managed:
      - source: salt://pi/rsyslog.conf
 
+/etc/logrotate.d/rsyslog:
+  file.managed:
+    - source: salt://pi/rsyslog
+
 /boot/cmdline.txt:
    file.replace:
       - pattern: "^(.(?!.*spidev.bufsiz).*)"
