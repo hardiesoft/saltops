@@ -6,7 +6,7 @@ min-disk-space: 200
 
 recorder:
     # Time to record before motion was detected.
-    preview-secs: 1
+    preview-secs: {{ salt['grains.get']('cacophony:recorder-preview', 1) }}
 
     # Minimum length to keep recording after motion is detected.
     min-secs: 10
