@@ -1,7 +1,11 @@
 thermal-recorder-pkg:
   cacophony.pkg_installed_from_github:
     - name: thermal-recorder
+    {% if salt['grains.get']('cacophony:recorder-beta') %}
+    - version: "1.11"
+    {% else %}
     - version: "1.10"
+    {% endif %}
 
 # Install support for exFAT & NTFS filesystems (for USB drives)
 extra-filesystems:
@@ -20,7 +24,11 @@ cp-volume-mount:
 
 /etc/thermal-recorder.yaml:
   file.managed:
+    {% if salt['grains.get']('cacophony:recorder-beta') %}
+    - source: salt://pi/thermal-recorder/thermal-recorder-1.11.yaml.jinja
+    {% else %}
     - source: salt://pi/thermal-recorder/thermal-recorder.yaml.jinja
+    {% endif %}
     - template: jinja
 
 /etc/leptond.yaml:
