@@ -14,12 +14,13 @@ recorder:
     # Maximum total video length.
     max-secs: 600
 
-{% set window = salt['grains.get']('cacophony:recording-window') %}
+{% set window = salt['grains.get']('cacophony:recording-window') -%}
 {%- if window -%}
-{%- set win_start, win_end = window.split('-') -%}
+{%- set win_start, win_end = window.split('-') %}
+    # Limit recording time
     window-start: '{{ win_start }}'
     window-end: '{{ win_end }}'
-{% endif %}
+{%- endif %}
 
 # Motion detection parameters
 motion:
