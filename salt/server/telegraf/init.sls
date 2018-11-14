@@ -1,9 +1,9 @@
-{% set version = "1.5.2-1" %}
+{% from "server/telegraf/map.jinja" import telegraf with context %}
 
 telegraf_pkg:
   pkg.installed:
     - sources:
-      - telegraf: https://dl.influxdata.com/telegraf/releases/telegraf_{{ version }}_amd64.deb
+      - telegraf: https://dl.influxdata.com/telegraf/releases/telegraf_{{ telegraf.version }}_amd64.deb
 
 /etc/telegraf/telegraf.conf:
   file.managed:

@@ -1,11 +1,12 @@
-{% set telegraf = salt['grains.filter_by']({ 
-  '*-minion': {
-    'dbserver': '172.31.114.242',
-    'version': '1.8.3-1',
-  },
-  'salt*': {
-    'dbserver': '172.31.114.242',
+{% set telegraf = salt['grains.filter_by']({
+  'server-prod-*': {
+    'dbserver': '10.0.0.3',
     'version': '1.5.2-1',
+  },
+  'server-test-*': {
+    'dbserver': ''10.138.112.159,
+    'version': '1.5.2-1',
+    # 'version': '1.8.3-1',
   },
 },
 grain='id',
