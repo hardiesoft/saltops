@@ -1,0 +1,11 @@
+{% set influxdb = salt['grains.filter_by']({
+  'server-prod-*':
+    'version': '1.4.2',
+  },
+  'server-test-*': {
+    'version': '1.4.2',
+    #'version': '1.7.0',
+  },
+},
+grain='id',
+)%}
