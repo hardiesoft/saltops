@@ -1,24 +1,26 @@
 # Directory to place CPTV output files.
 output-dir: "/var/spool/cptv"
 
-# Time to record before motion was detected.
-preview-secs: {{ salt['grains.get']('cacophony:recorder-preview', 1) }}
-
-# Minimum length to keep recording after motion is detected.
-min-secs: 10
-
-# Maximum total video length.
-max-secs: 600
-
 # Mininum disk space required to record, in MB
 min-disk-space: 200
 
-{% set window = salt['grains.get']('cacophony:recording-window') %}
+recorder:
+    # Time to record before motion was detected.
+    preview-secs: {{ salt['grains.get']('cacophony:recorder-preview', 1) }}
+
+    # Minimum length to keep recording after motion is detected.
+    min-secs: 10
+
+    # Maximum total video length.
+    max-secs: 600
+
+{% set window = salt['grains.get']('cacophony:recording-window') -%}
 {%- if window -%}
-{%- set win_start, win_end = window.split('-') -%}
-window-start: '{{ win_start }}'
-window-end: '{{ win_end }}'
-{% endif %}
+{%- set win_start, win_end = window.split('-') %}
+    # Limit recording time
+    window-start: '{{ win_start }}'
+    window-end: '{{ win_end }}'
+{%- endif %}
 
 # Motion detection parameters
 motion:
@@ -33,11 +35,6 @@ motion:
     # Number of pixels which must show delta-thresh change before
     # motion detection event will be triggered.
     count-thresh: 3
-
-    # Suppress motion detection if more than this percentage of the
-    # frame appears to change. This helps avoid false positives when
-    # the camera is recalibrating.
-    nonzero-max-percent: 50
 
     # When working out which pixels have changed it tries to compare
     # the current frame with one recorded this many frames ago. If there
