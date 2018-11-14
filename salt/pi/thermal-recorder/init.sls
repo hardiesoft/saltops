@@ -2,7 +2,7 @@ thermal-recorder-pkg:
   cacophony.pkg_installed_from_github:
     - name: thermal-recorder
     {% if salt['grains.get']('cacophony:recorder-beta') %}
-    - version: "1.11"
+    - version: "1.12"
     {% else %}
     - version: "1.10"
     {% endif %}
