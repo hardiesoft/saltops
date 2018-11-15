@@ -5,13 +5,6 @@ influxdb_pkg:
     - sources:
       - influxdb: https://dl.influxdata.com/influxdb/releases/influxdb_{{ influxdb.version }}_amd64.deb
 
-# Default
-/etc/influxdb/influxdb.conf:
-  file.managed
-#  file.managed:
-#    - source: salt://server/influxdb/influxdb.conf.jinja
-#    - template: jinja
-
 influxdb-daemon-reload:
   cmd.wait:
     - name: "systemctl daemon-reload"
@@ -23,7 +16,6 @@ influxdb-service:
     - name: influxdb
     - enable: True
     - watch:
-      - /etc/influxdb/influxdb.conf
       - influxdb-daemon-reload
 
 python3-influxdb:
