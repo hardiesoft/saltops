@@ -10,11 +10,15 @@ base:
     - server/salt
     - server/users
     - server/sshd
+    - server/telegraf
 
   # Production servers
   'server-prod-*':
-    - server/telegraf
     - server/mail-relay
+
+  server-test-api:
+    - server/influxdb
+    - server/grafana
 
   # Raspberry Pis
   'not server-*':
