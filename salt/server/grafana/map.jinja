@@ -1,5 +1,5 @@
-{% set grafana = salt['grains.filter_by']({ 
-  '*-minion': {
+{% set grafana = salt['grains.filter_by']({
+  '*-test-*': {
     'version': '5.3.2',
   },
   'salt*': {
