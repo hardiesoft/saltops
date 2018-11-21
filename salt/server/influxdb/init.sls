@@ -18,7 +18,7 @@ influxdb-service:
     - watch:
       - influxdb-daemon-reload
 
-python3-influxdb:
+python-influxdb:
   pkg.installed
 
 influx-db-test:
