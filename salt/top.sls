@@ -11,9 +11,6 @@ base:
     - server/users
     - server/sshd
     - server/telegraf
-
-  # Production servers
-  'server-prod-*':
     - server/mail-relay
 
   server-test-api:
