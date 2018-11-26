@@ -57,11 +57,9 @@ motion:
     # Otherwise there are ghost pixels where the animal used to be but isn't now.
     warmer-only: true
 
-{% if salt['grains.get']('cacophony:recorder-beta') -%}
     # The number of outermost pixels on each edge (top, left, right, bottom) to ignore
     # when running motion detection.
     edge-pixels: 1
-{%- endif %}
 
     # Verbose gives lots of information on which pixels are detected as changed.
     verbose: false
