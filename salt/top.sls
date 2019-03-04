@@ -24,6 +24,9 @@ base:
   server-prod-api:
     - server/tools/mc
 
+  server-prod-db:
+    - server/tools/mc
+
   # Raspberry Pis
   'not server-*':
     - pi/basics
