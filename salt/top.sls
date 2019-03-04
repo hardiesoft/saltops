@@ -18,6 +18,12 @@ base:
     - server/grafana
     - server/tools/mc
 
+  server-prod-salt:
+    - server/tools/mc
+
+  server-prod-api:
+    - server/tools/mc
+
   # Raspberry Pis
   'not server-*':
     - pi/basics
