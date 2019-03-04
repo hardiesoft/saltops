@@ -16,6 +16,7 @@ base:
   server-test-api:
     - server/influxdb
     - server/grafana
+    - server/tools/mc
 
   # Raspberry Pis
   'not server-*':
