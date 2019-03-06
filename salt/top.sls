@@ -27,6 +27,9 @@ base:
   server-prod-db:
     - server/tools/mc
 
+  'server-*-processing*':
+    - server/tools/ffmpeg
+
   # Raspberry Pis
   'not server-*':
     - pi/basics
