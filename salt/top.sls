@@ -22,6 +22,7 @@ base:
 
   server-prod-salt:
     - server/tools/mc
+    - server/grafana
 
   server-prod-api:
     - server/tools/mc
