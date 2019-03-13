@@ -1,0 +1,51 @@
+node:
+  pkgrepo.managed:
+    - humanname: NodeJS
+    - name: deb https://deb.nodesource.com/node_8.x/ bionic main
+    - file: /etc/apt/sources.list.d/nodesource.list
+    - key_url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    - clean_file: True
+    - refresh: False
+node.packages:
+  pkg.installed:
+    - pkgs:
+      - libjs-node-uuid
+      - node-abbrev
+      - node-ansi
+      - node-async
+      - node-balanced-match
+      - node-block-stream
+      - node-brace-expansion
+      - node-combined-stream
+      - node-concat-map
+      - node-cookie-jar
+      - node-delayed-stream
+      - node-forever-agent
+      - node-form-data
+      - node-fs.realpath
+      - node-fstream
+      - node-glob
+      - node-graceful-fs
+      - node-gyp
+      - node-inflight
+      - node-inherits
+      - node-isexe
+      - node-json-stringify-safe
+      - node-mime
+      - node-minimatch
+      - node-mkdirp
+      - node-node-uuid
+      - node-nopt
+      - node-npmlog
+      - node-once
+      - node-osenv
+      - node-path-is-absolute
+      - node-qs
+      - node-request
+      - node-rimraf
+      - node-semver
+      - node-tar
+      - node-tunnel-agent
+      - node-which
+      - node-wrappy
+      - nodejs
