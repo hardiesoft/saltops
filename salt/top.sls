@@ -17,12 +17,14 @@ base:
     - server/influxdb
     - server/grafana
     - server/tools/mc
+    - server/tools/minio
 
   server-prod-salt:
     - server/tools/mc
 
   server-prod-api:
     - server/tools/mc
+    - server/tools/minio
 
   server-prod-db:
     - server/tools/mc
