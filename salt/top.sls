@@ -18,6 +18,7 @@ base:
     - server/grafana
     - server/tools/mc
     - server/tools/minio
+    - server/node
 
   server-prod-salt:
     - server/tools/mc
@@ -25,6 +26,7 @@ base:
   server-prod-api:
     - server/tools/mc
     - server/tools/minio
+    - server/node
 
   server-prod-db:
     - server/tools/mc
