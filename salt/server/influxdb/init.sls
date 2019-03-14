@@ -21,6 +21,13 @@ influxdb-service:
 python-influxdb:
   pkg.installed
 
+sleep 10:
+  cmd.run
+
 influx-db-test:
   influxdb_database.present:
     - name: server_metrics
+    - require:
+      - cmd: sleep 10
+      - pkg: python-influxdb
+
