@@ -26,3 +26,6 @@
 minio:
   service.running:
     - enable: True
+    - watch: 
+      - file: /usr/local/bin/minio
+      - file: /etc/default/minio
