@@ -21,6 +21,7 @@ base:
     - server/node
 
   server-prod-salt:
+    - server/influxdb
     - server/tools/mc
     - server/grafana
 
