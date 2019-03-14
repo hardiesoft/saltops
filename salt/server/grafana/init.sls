@@ -7,7 +7,8 @@ grafana_pkg:
 
 /etc/grafana/grafana.ini:
   file.managed:
-    - source: salt://server/grafana/grafana.ini
+    - source: salt://server/grafana/grafana.ini.jinja
+    - template: jinja
 
 grafana-daemon-reload:
   cmd.wait:
