@@ -12,15 +12,16 @@ REMOTESTORE=cat-nz-por-1/cacophony-backup/fullnoise01
 DAYS=30
 LOGFILE=/var/log/mc-mirror.log-`date +%F`
 ERRORLOG=/var/log/mc-mirror-error.log-`date +%F`
+MAIL="coredev@cacophony.org.nz"
 CURL=/usr/bin/curl
 HOST=$(grep " hostname =" /etc/telegraf/telegraf.conf |cut -d"\"" -f2)
 INFLUX='http://10.0.0.3:8086'
 INFLUXDB=server_metrics
-# failure: 0, succes: 1
+# failure: 0, success: 1
 SUCCESS=0
 
 
-# Backup to external place 
+# Backup to external place
 echo "##############  Started mirror at `date`  ########" >> $LOGFILE
 echo "##############  Started mirror at `date`  ########" >> $ERRORLOG
 
@@ -39,11 +40,15 @@ FAILFILES=`grep 'Failed to copy' $ERRORLOG|wc -l`
 ERRORS=`wc -l < $ERRORLOG`
 # Get rid of the header and 'failed to copy'
 ERRORS=`echo "$ERRORS" - 1 - $FAILFILES|bc`
-[ $ERRORS -eq 0 ] && SUCCESS=1
+[[ $ERRORS -eq 0 ]] && SUCCESS=1
 
 # Write to monitoring-database
 $CURL -i -XPOST "$INFLUX/write?db=$INFLUXDB" --data-binary "backup,objectstore=$REMOTESTORE,host=$HOST success=$SUCCESS,data=$DATA,totfiles=$TOTFILES,failfiles=$FAILFILES"
 
+# Mailing if there is an error
+if [[ "$SUCCESS" == "0" ]] ; then
+  echo "There is problem with the objectstore backup at $HOST, please investigate" | mailx -s "Backup objectstore failed at $HOST" -A $ERRORLOG $MAIL
+fi
 
 # Cleaning
 find /var/log/ -mtime +$DAYS -name "mc-mirror*" -delete

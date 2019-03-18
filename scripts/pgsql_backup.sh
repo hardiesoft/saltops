@@ -13,7 +13,7 @@ LOCALSTORE=/mnt/database-backup
 REMOTESTORE=cat-nz-por-1/cacophony-backup/postgresql
 DATESTAMP=`date  +%F`
 DAYS=30
-MAILTO=huubnijs@gmail.com
+MAIL="coredev@cacophony.org.nz"
 INFLUX='http://10.0.0.3:8086'
 INFLUXDB=server_metrics
 # 0: failure, 1: success
@@ -26,7 +26,7 @@ if [ $? == 0 ] ;then
   SUCCESS=1
 else
   logger "Postgres dump failed: $LOCALSTORE/$DATABASE.${DATESTAMP}.pgdump "
-  echo "Postgres dump $DATABASE  failed at ${DATESTAMP} on `hostname` , please investigate" | mailx -s "Postgres dump failed" $MAILTO
+  echo "Postgres dump $DATABASE  failed at ${DATESTAMP} on `hostname` , please investigate" | mailx -s "Postgres dump failed" $MAIL
   SUCCESS=0
 fi
 
@@ -36,7 +36,7 @@ if [ $? == 0 ] ;then
   logger "Postgres dump $DATABASE secured at objectstore $REMOTESTORE "  
 else
   logger "Postgres dump $DATABASE failed at objectstore $REMOTESTORE "  
-  echo "Postgres dump $DATABASE not secured at objectstore $REMOTESTORE , please investigate" | mailx -s "Postgres dump failed" $MAILTO
+  echo "Postgres dump $DATABASE not secured at objectstore $REMOTESTORE , please investigate" | mailx -s "Postgres dump failed" $MAIL
   SUCCESS=0
 fi
 
@@ -46,5 +46,4 @@ $MC find $REMOTESTORE -name "*.pgdump" --older ${DAYS}d --exec "$MC rm {}"
 
 # Inform influxdb and grafana
 $CURL -i -XPOST "$INFLUX/write?db=$INFLUXDB" --data-binary "backup,postgresql=$DATABASE,host=$HOST success=$SUCCESS"
-
 
