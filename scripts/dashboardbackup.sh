@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script is used on prod-salt
 # It uses wizzy to read the Grafana-dashboards and dump them
-#     utkarshcmu.github.io/wizzy-site/home
+#    see  https://utkarshcmu.github.io/wizzy-site/home
 # It will save them in a external objectstore for 10 days
 # CopyLeft Huub, March 2019
 # set -xv
