@@ -14,7 +14,7 @@ recorder:
     # Maximum total video length.
     max-secs: 300
 
-{%- if salt['grains.get']('cacophony:recorder-beta') -%}
+{% if salt['grains.get']('cacophony:recorder-beta') -%}
      # Start & End time by Sunrise and Sunset
      sunrise-sunset: {{ salt['grains.get']('cacophony:recorder-no-window', 'true') }}
 
