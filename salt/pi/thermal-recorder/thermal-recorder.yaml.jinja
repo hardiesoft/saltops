@@ -16,11 +16,7 @@ recorder:
 
 {%- if salt['grains.get']('cacophony:recorder-beta') -%}
      # Start & End time by Sunrise and Sunset
-{%- if salt['grains.get']('cacophony:recorder-no-window') -%}
-    sunrise-sunset: false
-{%- else -%}
-    sunrise-sunset: true
-{%- endif -%}
+     sunrise-sunset: {{ salt['grains.get']('cacophony:recorder-no-window', 'true') }}
 
     # Amount of minutes to offset sunrise e.g. sunrise + offset
     # sunrise-offset: 30
