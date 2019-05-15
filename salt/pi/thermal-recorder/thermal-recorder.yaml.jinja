@@ -21,7 +21,7 @@ recorder:
 {%- set win_start, win_end = window.split('-') %}
     window-start: '{{ win_start }}'
     window-end: '{{ win_end }}'
-{%- else -%}
+{%- else %}
     sunrise-sunset: {{ salt['grains.get']('cacophony:recorder-no-window', 'true') }}
     # sunrise-offset: 30
     # sunset-offset: 30
