@@ -17,7 +17,6 @@ from datetime import datetime, timedelta
 from itertools import imap, ifilter
 import re
 import sys
-import time
 
 from dateutil.parser import parse as parse_date
 from influxdb import InfluxDBClient
@@ -66,9 +65,9 @@ def main():
     print("listening for minion start events")
     for minion_id in minion_ids:
         print("scheduling update for", minion_id)
-        jid = salt_client.cmd_async(minion_id, "state.apply")
-        print("  job id", jid)
-        state.record_update(minion_id)
+        job_id = salt_client.cmd_async(minion_id, "state.apply")
+        print("  job id", job_id)
+        state.record_update(minion_id, job_id)
 
 
 def load_file_lines(filename):
@@ -106,7 +105,7 @@ class UpdateState:
         now = datetime.now(last_t.tzinfo)
         return (now - last_t) > self.min_interval
 
-    def record_update(self, minion_id):
+    def record_update(self, minion_id, job_id):
         ts = datetime.utcnow()
         self.influx.write_points(
             [
@@ -114,7 +113,7 @@ class UpdateState:
                     "measurement": "updates",
                     "time": ts,
                     "tags": {"device": minion_id},
-                    "fields": {"u": True},  # dummy field required
+                    "fields": {"job_id": job_id},
                 }
             ]
         )
