@@ -14,8 +14,6 @@ recorder:
     # Maximum total video length.
     max-secs: 300
 
-{% if salt['grains.get']('cacophony:recorder-beta') %}
-
 {% set window = salt['grains.get']('cacophony:recording-window') -%}
 {%- if window -%}
 {%- set win_start, win_end = window.split('-') %}
@@ -26,17 +24,6 @@ recorder:
     # sunrise-offset: 30
     # sunset-offset: 30
 {%- endif %}
-
-{%- else -%}
-
-{% set window = salt['grains.get']('cacophony:recording-window') -%}
-{%- if window -%}
-{%- set win_start, win_end = window.split('-') %}
-    window-start: '{{ win_start }}'
-    window-end: '{{ win_end }}'
-{%- endif %}
-
-{% endif %}
 
 # Motion detection parameters
 motion:
