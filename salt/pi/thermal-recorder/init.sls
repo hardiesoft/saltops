@@ -4,7 +4,7 @@ thermal-recorder-pkg:
     {% if salt['grains.get']('cacophony:recorder-beta') %}
     - version: "1.17.0"
     {% else %}
-    - version: "1.16.1"
+    - version: "1.17.0"
     {% endif %}
 
 # Install support for exFAT & NTFS filesystems (for USB drives)
