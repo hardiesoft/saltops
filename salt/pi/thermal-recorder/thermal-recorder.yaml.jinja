@@ -65,7 +65,7 @@ motion:
     edge-pixels: 1
 
     # Verbose gives lots of information on which pixels are detected as changed.
-    verbose: false
+    verbose: {{ salt['grains.get']('cacophony:recorder-motion-debug', 'false') }}
 
 # Throttling of recording (for wind or animal in trap)
 throttler:
