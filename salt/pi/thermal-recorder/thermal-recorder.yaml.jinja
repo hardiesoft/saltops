@@ -29,7 +29,7 @@ recorder:
 motion:
     # Movement below raw temperatures of this value will not activate
     # motion detection.
-    temp-thresh: 3000
+    temp-thresh: {{ salt['grains.get']('cacophony:recorder-temp-thresh', 3000) }}
 
     # Minimum raw temperature difference between recent frames to
     # trigger motion detection.
@@ -54,7 +54,7 @@ motion:
 
     # No. of sequential frames that must have motion detected before a recording will
     # start.   Having this > 1 helps prevent false positives causing recordings
-    trigger-frames: 2
+    trigger-frames: {{ salt['grains.get']('cacophony:recorder-trigger-frames', 2) }}
 
     # If set to true, then the frame diff only considers pixels that have become warmer.
     # Otherwise there are ghost pixels where the animal used to be but isn't now.
