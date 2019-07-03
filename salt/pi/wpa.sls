@@ -5,11 +5,13 @@ set_wifi_country:
     - repl: "country=NZ"
 
 ensure_bushnet_ssid:
-  file.append:
+  file.replace:
     - name: /etc/wpa_supplicant/wpa_supplicant.conf
-    - text: |
+    - pattern: 'network={\n*\s*ssid="bushnet"\n*\s*psk="feathers"\n*\s*}'
+    - repl: |
         network={
             ssid="bushnet"
             psk="feathers"
+            priority=2
         }
-         
+    - append_if_not_found: true
