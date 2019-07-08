@@ -9,10 +9,19 @@ test-hosts:
   - "8.8.8.8"
   - "8.8.4.4"
 test-interval: 5m
-power-pin: "GPIO22"
-initial-on-time: 2m
+initial-on-time: 24h 
 find-modem-time: 2m
 connection-timeout: 1m
 ping-wait-time: 30s
 ping-retries: 5
 request-on-time: 24h
+
+# The pin to control the power to the USB plug (data modem)
+{% set hw_rev = salt['grains.get']('cacophony:hw:rev') | int -%}
+{%- if hw_rev >= 2 -%}
+power-pin: "GPIO22"
+{% else %}
+power-pin: "GPIO18"
+{%- endif %}
+
+
