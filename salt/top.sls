@@ -44,6 +44,7 @@ base:
     - pi/wpa
     - pi/rtc
     - pi/watchdog
+    - pi/modemd
     - pi/attiny-controller
     - pi/audio
     - pi/event-reporter
