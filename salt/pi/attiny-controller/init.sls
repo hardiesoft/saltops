@@ -1,7 +1,12 @@
 attiny-controller-pkg:
   cacophony.pkg_installed_from_github:
     - name: attiny-controller
-    - version: "2.0"
+    - version: "2.1"
+
+/etc/cacophony/attiny.yaml:
+  file.managed:
+    - source: salt://pi/attiny-controller/attiny.yaml.jinja
+    - template: jinja
 
 attiny-controller-service:
   service.running:
@@ -11,7 +16,3 @@ attiny-controller-service:
       - /etc/cacophony/attiny.yaml
       - attiny-controller-pkg
 
-/etc/cacophony/attiny.yaml:
-  file.managed:
-    - source: salt://pi/attiny-controller/attiny.yaml.jinja
-    - template: jinja
