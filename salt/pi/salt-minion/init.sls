@@ -12,3 +12,9 @@ salt_pkgrepo:
   file.managed:
     - source: salt://pi/salt-minion/minion
 
+wait_for_salt_id:
+  file.line:
+    - name: /lib/systemd/system/salt-minion.service
+    - mode: ensure
+    - after: "After=.+"
+    - content: ConditionPathExists=/etc/salt/minion_id
