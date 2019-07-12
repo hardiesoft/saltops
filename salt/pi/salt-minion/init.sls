@@ -12,9 +12,7 @@ salt_pkgrepo:
   file.managed:
     - source: salt://pi/salt-minion/minion
 
-wait_for_salt_id:
-  file.line:
-    - name: /lib/systemd/system/salt-minion.service
-    - mode: ensure
-    - after: "After=.+"
-    - content: ConditionPathExists=/etc/salt/minion_id
+/etc/systemd/system/salt-minion.service.d/override.conf:
+   file.managed:
+     - makedirs: True
+     - source: salt://pi/salt-minion/override.conf
