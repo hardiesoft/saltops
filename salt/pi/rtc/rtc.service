@@ -1,15 +1,12 @@
 [Unit]
-Description=Set the system clock from the RTC 
+Description=Set the system clock from the RTC
 DefaultDependencies=no
 After=sysinit.target
-Before=basic.target
 Conflicts=shutdown.target
-ConditionPathExists=/dev/rtc0
 
 [Service]
-ExecStart=/sbin/hwclock --hctosys
+ExecStart=/usr/bin/load-rtc
 Type=oneshot
 
 [Install]
 WantedBy=sysinit.target
-

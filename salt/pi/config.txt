@@ -19,3 +19,6 @@ dtparam=spi=on
 
 # Enable i2s audio chip
 dtoverlay=hifiberry-dac
+
+# Helps with loading RTC at boot properly
+gpio=22=op,dh

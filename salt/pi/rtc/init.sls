@@ -10,7 +10,7 @@ start_fake_hwclock_after_sysinit:
 start_fake_hwclock_before_basic:
   file.replace:
     - name: /lib/systemd/system/fake-hwclock.service
-    - pattern: "^Before=.+"    
+    - pattern: "^Before=.+"
     - repl: "Before=basic.target"
 
 dont_start_fake_hwclock_if_rtc_exists:
@@ -24,6 +24,11 @@ rtc-service-file:
   file.managed:
     - name: /etc/systemd/system/rtc.service
     - source: salt://pi/rtc/rtc.service
+
+/usr/bin/load-rtc:
+   file.managed:
+     - mode: 755
+     - source: salt://pi/rtc/load-rtc
 
 rtc-daemon-reload:
   cmd.wait:
