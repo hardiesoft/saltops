@@ -12,3 +12,7 @@ salt_pkgrepo:
   file.managed:
     - source: salt://pi/salt-minion/minion
 
+/etc/systemd/system/salt-minion.service.d/override.conf:
+   file.managed:
+     - makedirs: True
+     - source: salt://pi/salt-minion/override.conf
