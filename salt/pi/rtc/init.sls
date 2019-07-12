@@ -37,8 +37,9 @@ rtc-daemon-reload:
        - rtc-service-file
 
 rtc-service:
-  service.enabled:
+  service.dead:
     - name: rtc
+    - enable: True
     - watch:
       - rtc-daemon-reload
 
