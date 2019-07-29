@@ -72,16 +72,11 @@ throttler:
     # set to false if you do not want to apply throttling
     apply-throttling: {{ salt['grains.get']('cacophony:throttling', true) }}
 
-    # start throttling after this many seconds of recording
-    throttle-after-secs: 300
+    # Maximum continuous recording time represented by the recording
+    # bucket. Due to the bucket refilling over time, the maximum
+    # recording allowed by throttling is actually longer than this.
+    bucket-size: "5m"
 
-    # record an occasional sparse recording after this many seconds of throttling during which
-    # time no recordings have been made
-    sparse-after-secs: 3600
-
-    # max length of sparse recording should be.
-    # if =0 then no occasional recordings will be made
-    # if value is less than the min recording length then it will set to min recording length
-    sparse-length-secs: 1
-
-    refill-rate: 0.167
+    # The minimum time before a recording is allowed again once
+    # throttling has engaged.
+    min-refill: "10m"
