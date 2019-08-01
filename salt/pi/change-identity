@@ -2,9 +2,9 @@
 #    https://tree.taiga.io/project/the-cacophony-project/us/221?kanban-status=268961
 #    take the new id and group as command line arguments
 #    stop the thermal-uploader service
-#    back up /etc/thermal-uploader.yaml
-#    update /etc/thermal-uploader.yaml with the new id and group
-#    move /etc/thermal-uploader-priv.yaml out of the way (but keep the old version around as a backup)
+#    back up /etc/cacophony/device.yaml
+#    update /etc/cacophony/device.yaml with the new id and group
+#    move /etc/cacophony/device-priv.yaml out of the way (but keep the old version around as a backup)
 #    set the new id in /etc/salt/minion_id
 #    set the new id in /etc/hostname
 #    update the /etc/hosts entry for 127.0.0.1
@@ -20,12 +20,15 @@ if [ $# -ne 2 ]; then
 fi
 echo "Changing name to '"$1"' and group to '"$2"'"
 
+device_conf=/etc/cacophony/device.yaml
+device_priv_conf=/etc/cacophony/device-priv.yaml
+
 systemctl stop thermal-uploader || { echo "failed to stop thermal-uploader service"; exit 1; }
-cp /etc/thermal-uploader.yaml /etc/thermal-uploader.yaml.backup || { echo "back of config file failed"; exit 1; }
-sed -i -E 's/group.*/group: '$2'/' /etc/thermal-uploader.yaml
-sed -i -E 's/device-name.*/device-name: '$1'/' /etc/thermal-uploader.yaml
-if [ -f /etc/thermal-uploader-priv.yaml ]; then
-    mv /etc/thermal-uploader-priv.yaml /etc/thermal-uploader-priv.yaml.backup || { echo "backup of private file failed"; exit 1; }
+cp ${device_conf} ${device_conf}.backup || { echo "back of config file failed"; exit 1; }
+sed -i -E 's/group.*/group: '$2'/' ${device_conf}
+sed -i -E 's/device-name.*/device-name: '$1'/' ${device_conf}
+if [ -f ${device_priv_conf} ]; then
+    mv ${device_priv_conf} ${device_priv_conf}.backup || { echo "backup of private device file failed"; exit 1; }
 fi
 echo $1 > /etc/salt/minion_id
 echo $1 > /etc/hostname
