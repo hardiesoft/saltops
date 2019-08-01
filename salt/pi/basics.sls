@@ -48,3 +48,9 @@ hdmi-off-service:
 i2c-tools:
   pkg.installed: []
 
+{% if not salt["grains.get"]("cacophony:hw:rev") %}
+default-hw-rev:
+  grains.present:
+    - name: cacophony:hw:rev
+    - value: 2
+{% endif %}
