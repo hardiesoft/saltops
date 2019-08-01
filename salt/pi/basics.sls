@@ -25,7 +25,7 @@
 /usr/local/bin/change-identity:
    file.managed:
      - source: salt://pi/change-identity
-     - mode: 755
+     - mode: 744
 
 hdmi-off-service-file:
    file.managed:
@@ -47,3 +47,4 @@ hdmi-off-service:
 
 i2c-tools:
   pkg.installed: []
+
