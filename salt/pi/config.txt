@@ -21,4 +21,4 @@ dtparam=spi=on
 dtoverlay=hifiberry-dac
 
 # Helps with loading RTC at boot properly
-gpio=22=op,dh
+gpio=23=op,dh
