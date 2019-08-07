@@ -1,6 +1,7 @@
 /boot/config.txt:
    file.managed:
-     - source: salt://pi/config.txt
+     - source: salt://pi/config.txt.jinja
+     - template: jinja
 
 /etc/modules:
    file.managed:

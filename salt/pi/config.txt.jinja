@@ -21,4 +21,12 @@ dtparam=spi=on
 dtoverlay=hifiberry-dac
 
 # Helps with loading RTC at boot properly
+gpio=23=op,dh
+
+# Default the pin to control the power to the USB plug (data modem) high
+{% set hw_rev = salt['grains.get']('cacophony:hw:rev') | int -%}
+{%- if hw_rev >= 2 -%}
 gpio=22=op,dh
+{% else %}
+gpio=18=op,dh
+{%- endif %}
