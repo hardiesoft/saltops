@@ -53,3 +53,4 @@ base:
     - pi/thermal-uploader
     - pi/dataplicity
     - pi/management-interface
+    - pi/removed
