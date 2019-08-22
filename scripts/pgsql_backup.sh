@@ -42,7 +42,7 @@ fi
 
 # Cleaning up. Local just 1, remote just $DAYS
 find $LOCALSTORE -name "*.pgdump" -mtime 1 -delete 
-$MC find $REMOTESTORE -name "*.pgdump" --older ${DAYS}d --exec "$MC rm {}"
+$MC find $REMOTESTORE -name "*.pgdump" --older-than ${DAYS}d --exec "$MC rm {}"
 
 # Inform influxdb and grafana
 $CURL -i -XPOST "$INFLUX/write?db=$INFLUXDB" --data-binary "backup,postgresql=$DATABASE,host=$HOST success=$SUCCESS"
