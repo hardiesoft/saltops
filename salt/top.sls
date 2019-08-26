@@ -52,4 +52,5 @@ base:
     - pi/thermal-recorder
     - pi/thermal-uploader
     - pi/management-interface
+    - pi/device-register
     - pi/removed
