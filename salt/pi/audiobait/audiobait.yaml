@@ -1,5 +1,0 @@
-audio-directory: /var/lib/audiobait
-
-# Sound card details
-card: 0
-volume-control: "PCM"
