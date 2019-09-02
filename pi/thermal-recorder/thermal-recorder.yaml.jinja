@@ -27,6 +27,8 @@ recorder:
 
 # Motion detection parameters
 motion:
+    dynamic-thresh: true
+
     # Movement below raw temperatures of this value will not activate
     # motion detection.
     temp-thresh: {{ salt['grains.get']('cacophony:recorder-temp-thresh', 2900) }}
