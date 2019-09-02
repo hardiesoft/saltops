@@ -29,7 +29,7 @@ recorder:
 motion:
     # Movement below raw temperatures of this value will not activate
     # motion detection.
-    temp-thresh: {{ salt['grains.get']('cacophony:recorder-temp-thresh', 2850) }}
+    temp-thresh: {{ salt['grains.get']('cacophony:recorder-temp-thresh', 2900) }}
 
     # Minimum raw temperature difference between recent frames to
     # trigger motion detection.
