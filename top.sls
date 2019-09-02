@@ -1,5 +1,6 @@
 test:
-  N@test-servers:
+  test-servers:
+    - match: nodegroup
     - basics
     - timezone
     - server/basics
@@ -20,7 +21,8 @@ test:
   'server-test-processing*':
     - server/tools/ffmpeg
 
-  N@test-pis:
+  test-pis:
+    - match: nodegroup
     - basics
     - timezone
     - pi/basics
@@ -43,7 +45,8 @@ test:
 #-----------------------------------
 
 prod:
-  N@prod-servers:
+  prod-servers:
+    - match: nodegroup
     - basics
     - timezone
     - server/basics
@@ -70,7 +73,8 @@ prod:
   'server-prod-processing*':
     - server/tools/ffmpeg
 
-  N@prod-pis:
+  prod-pis:
+    - match: nodegroup
     - basics
     - timezone
     - pi/basics
