@@ -1,9 +1,9 @@
-{% set mc = salt['grains.filter_by']({ 
+{% set mc = salt['grains.filter_by']({
   '*-test-*': {
-    'version': 'RELEASE.2019-02-27T18-44-28Z',
+    'version': 'RELEASE.2019-08-21T19-59-10Z',
   },
   '*-prod-*': {
-    'version': 'RELEASE.2019-02-27T18-44-28Z',
+    'version': 'RELEASE.2019-08-21T19-59-10Z',
   },
 },
 grain='id',
@@ -19,4 +19,3 @@ grain='id',
 },
 grain='id',
 ) %}
-

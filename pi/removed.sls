@@ -1,5 +1,7 @@
-# Ensure that Dataplicity is uninstalled
+/usr/local/bin/change-identity:
+   file.absent
 
+# Ensure that Dataplicity is uninstalled
 supervisor:
   pkg.purged
 
@@ -14,6 +16,3 @@ dataplicity:
 
 /etc/supervisor:
   file.absent
-
-
-

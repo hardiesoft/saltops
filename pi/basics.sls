@@ -23,11 +23,6 @@
 /etc/cacophony:
    file.directory
 
-/usr/local/bin/change-identity:
-   file.managed:
-     - source: salt://pi/change-identity
-     - mode: 744
-
 hdmi-off-service-file:
    file.managed:
      - name: /etc/systemd/system/hdmi-off.service

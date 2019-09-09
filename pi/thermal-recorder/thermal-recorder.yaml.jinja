@@ -27,9 +27,11 @@ recorder:
 
 # Motion detection parameters
 motion:
+    dynamic-thresh: true
+
     # Movement below raw temperatures of this value will not activate
     # motion detection.
-    temp-thresh: {{ salt['grains.get']('cacophony:recorder-temp-thresh', 2850) }}
+    temp-thresh: {{ salt['grains.get']('cacophony:recorder-temp-thresh', 2900) }}
 
     # Minimum raw temperature difference between recent frames to
     # trigger motion detection.
@@ -75,7 +77,7 @@ throttler:
     # Maximum continuous recording time represented by the recording
     # bucket. Due to the bucket refilling over time, the maximum
     # recording allowed by throttling is actually longer than this.
-    bucket-size: "5m"
+    bucket-size: "10m"
 
     # The minimum time before a recording is allowed again once
     # throttling has engaged.

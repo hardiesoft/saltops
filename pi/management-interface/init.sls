@@ -1,11 +1,14 @@
 management-interface-pkg:
   cacophony.pkg_installed_from_github:
     - name: management-interface
-    - version: "0.10"
+    - version: "0.12.3"
 
-management-interface-service:
+managementd-service:
   service.running:
-    - name: cacophonator-management
+    - name: managementd
     - enable: True
     - watch:
       - management-interface-pkg
+
+/etc/systemd/system/multi-user.target.wants/cacophonator-management.service:
+   file.absent
