@@ -90,5 +90,6 @@ prod:
     - pi/audiobait
     - pi/thermal-recorder
     - pi/thermal-uploader
-    - pi/dataplicity
     - pi/management-interface
+    - pi/device-register
+    - pi/removed
