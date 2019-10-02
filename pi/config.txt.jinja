@@ -7,11 +7,13 @@ gpu_mem=16
 start_x=0
 enable_uart=0
 
+{%- if not salt['grains.get']('cacophony:cpu-max') -%}
 arm_freq=600
 arm_freq_min=600
 
 gpu_freq=200
 gpu_freq_min=200
+{%- endif %}
 
 dtparam=i2c_arm=on
 dtoverlay=i2c-rtc,pcf8523
