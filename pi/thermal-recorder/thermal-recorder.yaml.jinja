@@ -4,6 +4,8 @@ output-dir: "/var/spool/cptv"
 # Mininum disk space required to record, in MB
 min-disk-space: 200
 
+{% set continuous = salt['grains.get']('cacophony:continuous-recording') -%}
+
 recorder:
     # Time to record before motion was detected.
     preview-secs: {{ salt['grains.get']('cacophony:recorder-preview', 1) }}
@@ -27,6 +29,21 @@ recorder:
 
 # Motion detection parameters
 motion:
+{%- if continuous %}
+    dynamic-thresh: false
+
+    # Movement below raw temperatures of this value will not activate
+    # motion detection.
+    temp-thresh: 0
+
+    # Minimum raw temperature difference between recent frames to
+    # trigger motion detection.
+    delta-thresh: 0
+
+    # Number of pixels which must show delta-thresh change before
+    # motion detection event will be triggered.
+    count-thresh: 0
+{%- else %}
     dynamic-thresh: true
 
     # Movement below raw temperatures of this value will not activate
@@ -40,6 +57,7 @@ motion:
     # Number of pixels which must show delta-thresh change before
     # motion detection event will be triggered.
     count-thresh: 3
+{%- endif %}
 
     # When working out which pixels have changed it tries to compare
     # the current frame with one recorded this many frames ago. If there
@@ -71,8 +89,12 @@ motion:
 
 # Throttling of recording (for wind or animal in trap)
 throttler:
+{%- if continuous %}
+    apply-throttling: false
+{%- else %}
     # set to false if you do not want to apply throttling
     apply-throttling: {{ salt['grains.get']('cacophony:throttling', true) }}
+{%- endif %}
 
     # Maximum continuous recording time represented by the recording
     # bucket. Due to the bucket refilling over time, the maximum
