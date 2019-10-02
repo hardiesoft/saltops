@@ -30,3 +30,7 @@ gpio=22=op,dh
 {% else %}
 gpio=18=op,dh
 {%- endif %}
+
+# rs485 support
+dtoverlay=pi3-disable-bt
+enable_uart=1
