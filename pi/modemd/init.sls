@@ -21,7 +21,7 @@
 modemd-pkg:
   cacophony.pkg_installed_from_github:
     - name: modemd
-    - version: "0.1"
+    - version: "1.0.0"
 
 /etc/cacophony/modemd.yaml:
   file.managed:

@@ -1,7 +1,7 @@
 audiobait-pkg:
   cacophony.pkg_installed_from_github:
     - name: audiobait
-    - version: "1.5.0"
+    - version: "2.0.0"
 
 /etc/audiobait.yaml:
   file.managed:
