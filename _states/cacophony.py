@@ -2,10 +2,13 @@ import os
 import subprocess
 
 
-def pkg_installed_from_github(name, version, systemd_reload=True):
-    """Install a deb pacakge from a Cacophony Project Github release if it
+def pkg_installed_from_github(name, version, pkg_name=None, systemd_reload=True):
+    """Install a deb package from a Cacophony Project Github release if it
     isn't installed on the system already. Currently only ARM packages are
     installed.
+
+    pkg_name
+        Name of the deb package if it is different to the github repository name.
 
     If a new version is installed, systemd will be asked to reload it's
     configuration so that any new service files in the package are known to
@@ -15,23 +18,27 @@ def pkg_installed_from_github(name, version, systemd_reload=True):
     # Guard against versions being converted to floats in YAML parsing.
     assert isinstance(version, basestring), "version must be a string"
 
-    installed_version = __salt__['pkg.version'](name)
+    if pkg_name == None:
+        pkg_name = name
+
+    installed_version = __salt__['pkg.version'](pkg_name)
     if installed_version == version:
         return {
-            'name': name,
+            'name': pkg_name,
             'result': True,
             'comment': 'Version %s already installed.' % version,
             'changes': {}
         }
 
-    source_url = 'https://github.com/TheCacophonyProject/{name}/releases/download/v{version}/{name}_{version}_arm.deb'.format(
+    source_url = 'https://github.com/TheCacophonyProject/{name}/releases/download/v{version}/{pkg_name}_{version}_arm.deb'.format(
+        name=name,
+        pkg_name=pkg_name,
+        version=version,
+    )
+    ret = __states__['pkg.installed'](
         name=name,
         version=version,
-    )   
-    ret = __states__['pkg.installed'](
-        name=name, 
-        version=version, 
-        sources=[{name: source_url}],
+        sources=[{pkg_name: source_url}],
         refresh=False,
     )
 
@@ -73,13 +80,13 @@ def init_alsa(name):
         'comment': "ALSA state updated",
         'changes': {
             name: {
-                'old': '', 
+                'old': '',
                 'new': 'configured',
             },
         },
     }
 
-    
+
 def _is_audio_setup():
     output = subprocess.check_output("amixer")
     return "Simple mixer control 'PCM',0" in output
@@ -96,4 +103,3 @@ def _play_silence():
     "Play 100ms of silence and return True if this succeeeded"
     exit_code = subprocess.call("sox -n -t wav - trim 0.0 0.100 | play -q -", shell=True)
     return exit_code == 0
-
