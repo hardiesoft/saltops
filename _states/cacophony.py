@@ -3,9 +3,12 @@ import subprocess
 
 
 def pkg_installed_from_github(name, version, pkg_name=None, systemd_reload=True):
-    """Install a deb pacakge from a Cacophony Project Github release if it
+    """Install a deb package from a Cacophony Project Github release if it
     isn't installed on the system already. Currently only ARM packages are
     installed.
+
+    pkg_name
+        Name of the deb package if it is different to the github repository name.
 
     If a new version is installed, systemd will be asked to reload it's
     configuration so that any new service files in the package are known to
@@ -14,7 +17,7 @@ def pkg_installed_from_github(name, version, pkg_name=None, systemd_reload=True)
 
     # Guard against versions being converted to floats in YAML parsing.
     assert isinstance(version, basestring), "version must be a string"
-    
+
     if pkg_name == None:
         pkg_name = name
 
@@ -38,7 +41,7 @@ def pkg_installed_from_github(name, version, pkg_name=None, systemd_reload=True)
         sources=[{pkg_name: source_url}],
         refresh=False,
     )
-   
+
     if systemd_reload and ret['result'] and ret['changes'] and not __opts__['test']:
         __salt__['cmd.run']('systemctl daemon-reload')
         ret['comment'] += ' (systemd reloaded)'
