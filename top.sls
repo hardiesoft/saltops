@@ -41,6 +41,7 @@ test:
     - pi/management-interface
     - pi/device-register
     - pi/removed
+    - pi/config
 
 #-----------------------------------
 
