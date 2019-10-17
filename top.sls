@@ -42,6 +42,7 @@ test:
     - pi/device-register
     - pi/removed
     - pi/config
+    - pi/maybe-reboot
 
 #-----------------------------------
 
