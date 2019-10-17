@@ -1,6 +1,12 @@
-system.reboot:
+reboot_after_boot_changes:
   module.run:
+    - name: system.reboot
     - onchanges:
-      # List things here that should trigger a reboot at the end of
-      # state.apply if changed.
-      - cacophony-config-pkg
+      - /boot/config.txt
+      - /boot/cmdline.txt
+      - /etc/modules
+
+reboot_for_config_import:
+  module.run:
+    - name: system.reboot
+    - unless: test -f /etc/cacophony/config.toml
