@@ -25,6 +25,7 @@ test:
     - match: nodegroup
     - basics
     - timezone
+    - pi/config
     - pi/basics
     - pi/auth
     - pi/salt-minion
@@ -41,7 +42,6 @@ test:
     - pi/management-interface
     - pi/device-register
     - pi/removed
-    - pi/config
     - pi/maybe-reboot
 
 #-----------------------------------
