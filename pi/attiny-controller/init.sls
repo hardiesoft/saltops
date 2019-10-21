@@ -1,7 +1,7 @@
 attiny-controller-pkg:
   cacophony.pkg_installed_from_github:
     - name: attiny-controller
-    - version: "3.0.0"
+    - version: "3.1.0"
 
 /etc/cacophony/attiny.yaml:
   file.managed:
