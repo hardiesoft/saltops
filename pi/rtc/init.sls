@@ -20,30 +20,13 @@ dont_start_fake_hwclock_if_rtc_exists:
     - after: "Conflicts=.+"
     - content: "ConditionPathExists=!/dev/rtc0"
 
-rtc-service-file:
-  file.managed:
-    - name: /etc/systemd/system/rtc.service
-    - source: salt://pi/rtc/rtc.service
 
-/usr/bin/load-rtc:
-   file.managed:
-     - mode: 755
-     - source: salt://pi/rtc/load-rtc
+rtc-utils-pkg:
+  cacophony.pkg_installed_from_github:
+    - name: rtc-utils
+    - version: "1.0.0"
 
-rtc-daemon-reload:
-  cmd.wait:
-    - name: "systemctl daemon-reload"
-    - watch:
-       - rtc-service-file
-
-rtc-service:
-  service.dead:
-    - name: rtc
-    - enable: True
-    - watch:
-      - rtc-daemon-reload
-
+# This has been replaced by /etc/cron.daily/sync-rtc which is
+# installed by the rtc-utils package
 /etc/cron.daily/update-rtc:
-  file.managed:
-    - mode: 755
-    - source: salt://pi/rtc/update-rtc
+  file.absent: []
