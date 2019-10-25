@@ -1,10 +1,10 @@
 device-register-pkg:
   cacophony.pkg_installed_from_github:
     - name: device-register
-    - version: "0.3"
+    - version: "1.0.0"
 
 device-register-service:
   service.enabled:
     - name: device-register
-    - watch:
+    - onchanges:
       - device-register-pkg
