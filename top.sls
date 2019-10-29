@@ -79,6 +79,7 @@ prod:
     - match: nodegroup
     - basics
     - timezone
+    - pi/config
     - pi/basics
     - pi/auth
     - pi/salt-minion
@@ -95,3 +96,4 @@ prod:
     - pi/management-interface
     - pi/device-register
     - pi/removed
+    - pi/maybe-reboot
