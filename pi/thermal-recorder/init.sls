@@ -1,7 +1,7 @@
 thermal-recorder-pkg:
   cacophony.pkg_installed_from_github:
     - name: thermal-recorder
-    - version: "2.0.0"
+    - version: "2.1.0"
 
 # Install support for exFAT & NTFS filesystems (for USB drives)
 extra-filesystems:
@@ -18,23 +18,12 @@ cp-volume-mount:
     - text:
       - "LABEL=cp /media/cp auto auto,nofail,noexec,nodev,noatime,nodiratime 0 2"
 
-/etc/thermal-recorder.yaml:
-  file.managed:
-    - source: salt://pi/thermal-recorder/thermal-recorder.yaml.jinja
-    - template: jinja
-
-/etc/leptond.yaml:
-  file.managed:
-    - source: salt://pi/thermal-recorder/leptond.yaml.jinja
-    - template: jinja
-
 thermal-recorder-service:
   service.running:
     - name: thermal-recorder
     - enable: True
     - watch:
       - thermal-recorder-pkg
-      - /etc/thermal-recorder.yaml
 
 leptond-service:
   service.running:
@@ -42,7 +31,6 @@ leptond-service:
     - enable: True
     - watch:
       - thermal-recorder-pkg
-      - /etc/leptond.yaml
 
 set-thermal-recorder-output:
   service.enabled: []
