@@ -24,7 +24,6 @@ thermal-recorder-service:
     - enable: True
     - watch:
       - thermal-recorder-pkg
-      - /etc/thermal-recorder.yaml
 
 leptond-service:
   service.running:
@@ -32,7 +31,6 @@ leptond-service:
     - enable: True
     - watch:
       - thermal-recorder-pkg
-      - /etc/leptond.yaml
 
 set-thermal-recorder-output:
   service.enabled: []
