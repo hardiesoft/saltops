@@ -3,7 +3,6 @@ salt_pkgrepo:
     - humanname: SaltStack
     - name: deb http://repo.saltstack.com/apt/debian/9/armhf/2018.3 stretch main
     - file: /etc/apt/sources.list.d/saltstack.list
-    #- key_url: https://repo.saltstack.com/apt/debian/9/armhf/2018.3/SALTSTACK-GPG-KEY.pub
     - clean_file: True
     - refresh: False
 
@@ -16,3 +15,13 @@ salt_pkgrepo:
    file.managed:
      - makedirs: True
      - source: salt://pi/salt-minion/override.conf
+
+/usr/local/bin/check-salt-keys:
+  file.managed:
+    - source: salt://pi/salt-minion/check-salt-keys
+    - mode: 755
+
+/etc/cron.hourly/check-salt-keys:
+  file.managed:
+    - source: salt://pi/salt-minion/check-salt-keys.cron
+    - mode: 755

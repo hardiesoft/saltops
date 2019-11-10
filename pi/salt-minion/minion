@@ -50,3 +50,5 @@ tcp_keepalive_cnt: 3
 # use OS defaults, typically 75 seconds on Linux, see
 # /proc/sys/net/ipv4/tcp_keepalive_intvl.
 tcp_keepalive_intvl: 20
+
+log_level: info
