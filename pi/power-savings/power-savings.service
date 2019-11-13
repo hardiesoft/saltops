@@ -1,9 +1,0 @@
-[Unit]
-Description=Disable HDMI output
-
-[Service]
-ExecStart=/usr/bin/power-savings
-Type=oneshot
-
-[Install]
-WantedBy=basic.target
