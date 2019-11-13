@@ -2,9 +2,8 @@
 Description=Disable HDMI output
 
 [Service]
-ExecStart=/opt/vc/bin/tvservice --off
+ExecStart=/usr/bin/power-savings
 Type=oneshot
 
 [Install]
 WantedBy=basic.target
-
