@@ -96,5 +96,6 @@ prod:
     - pi/thermal-uploader
     - pi/management-interface
     - pi/device-register
+    - pi/energy-savings
     - pi/removed
     - pi/maybe-reboot
