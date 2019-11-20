@@ -5,6 +5,10 @@
 {% endif %}
 {%- endfor %}
 
+{% if grains['id'].startswith('server-prod-') -%}
+10.0.0.2	api.cacophony.org.nz api
+{% endif %}
+
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
