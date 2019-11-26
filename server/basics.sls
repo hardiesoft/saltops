@@ -9,6 +9,9 @@ python.packages:
       - python3-wheel
       - python3-dev
 
+docker.io:
+  pkg.installed
+
 /etc/hosts:
   file.managed:
     - source: salt://server/hosts.jinja
