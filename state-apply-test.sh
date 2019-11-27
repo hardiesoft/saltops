@@ -1,12 +1,13 @@
 #!/bin/bash
-
-
+# This is to help testing salt changes on a Raspberry Pi
+# Usage: state-apply-test.sh [devicename] [state.apply params]
+# If you need to make changes to top.sls make the changes in `salt/top.sls` This is what is used when testing
 
 device=$1
 params=$2
 
 if [[ -z $device ]]; then
-  echo "please provide device name"
+  echo "please provide device name. Usage \`state-apply-test.sh [devicename] [state.apply params]\`"
   exit 1
 fi
 

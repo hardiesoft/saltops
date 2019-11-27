@@ -20,5 +20,5 @@ base:
     - pi/device-register
     - pi/energy-savings
     - pi/removed
-    - pi/end
     - pi/maybe-reboot
+    - pi/end
