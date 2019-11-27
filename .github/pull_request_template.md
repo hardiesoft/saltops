@@ -9,6 +9,5 @@ Briefly describe how the change was tested.
 ## top.sls changes
 
 - [ ] Does this change require an update to top.sls in the `master` branch?
-- [ ] Has the relevant PR for the top.sls been prepared
-
+- [ ] Has the relevant PR for the top.sls (including local `salt/top.sls`) been prepared
 Please include a references to any related PRs.
