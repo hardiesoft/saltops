@@ -23,6 +23,7 @@ test:
 
   test-pis:
     - match: nodegroup
+    - pi/start
     - basics
     - timezone
     - pi/config
@@ -44,6 +45,7 @@ test:
     - pi/energy-savings
     - pi/removed
     - pi/maybe-reboot
+    - pi/end
 
 #-----------------------------------
 
