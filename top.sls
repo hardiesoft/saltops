@@ -80,6 +80,7 @@ prod:
 
   prod-pis:
     - match: nodegroup
+    - pi/start
     - basics
     - timezone
     - pi/config
@@ -101,3 +102,4 @@ prod:
     - pi/energy-savings
     - pi/removed
     - pi/maybe-reboot
+    - pi/end
