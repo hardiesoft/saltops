@@ -1,4 +1,0 @@
-{%- set window = salt['grains.get']('cacophony:on-window', '20:00-20:00') -%}
-{%- set wake, sleep = window.split('-') -%}
-pi-wake-time: {{ wake }}
-pi-sleep-time: {{ sleep }}
