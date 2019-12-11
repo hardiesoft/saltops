@@ -31,7 +31,6 @@ unused.packages:
       - fonts-droid-fallback
       - ghostscript
       - libcups2
-      - libopenal-data
       - ntfs-3g
       - manpages-dev
       - ruby
