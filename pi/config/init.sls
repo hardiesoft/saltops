@@ -1,3 +1,6 @@
+/etc/cacophony:
+  file.directory
+
 cacophony-config-pkg:
   cacophony.pkg_installed_from_github:
     - name: go-config
