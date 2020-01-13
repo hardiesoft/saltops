@@ -1,4 +1,4 @@
-'date "+%Y-%m-%d %H:%M:%S" > /etc/cacophony/last-salt-update':
+'date --iso-8601=seconds > /etc/cacophony/last-salt-update':
   cmd.run
 
 'systemctl stop stay-on':
