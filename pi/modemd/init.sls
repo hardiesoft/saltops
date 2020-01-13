@@ -23,16 +23,8 @@ modemd-pkg:
     - name: modemd
     - version: "1.0.0"
 
-/etc/cacophony/modemd.yaml:
-  file.managed:
-    - source: salt://pi/modemd/modemd.yaml.jinja
-    - template: jinja
-    - mode: 644
-
 modemd:
   service.running:
     - enable: True
     - watch:
-      - file: /etc/cacophony/modemd.yaml
       - modemd-pkg
-
