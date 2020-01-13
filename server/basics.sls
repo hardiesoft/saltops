@@ -34,3 +34,7 @@ unused.packages:
       - ntfs-3g
       - manpages-dev
       - ruby
+
+/etc/logrotate.d/rsyslog:
+  file.managed:
+    - source: salt://server/rsyslog
