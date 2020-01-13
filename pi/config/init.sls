@@ -7,7 +7,7 @@ cacophony-config-pkg:
     - version: "1.3.1"
     - pkg_name: cacophony-config
 
-# Arhive old config files
+# Archive old config files
 
 /etc/cacophony/archive:
   file.directory
