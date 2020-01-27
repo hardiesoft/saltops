@@ -20,9 +20,6 @@
       - pattern: "^(.(?!.*spidev.bufsiz).*)"
       - repl: "\\1 spidev.bufsiz=65536"
 
-/etc/cacophony:
-   file.directory
-
 i2c-tools:
   pkg.installed: []
 

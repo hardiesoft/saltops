@@ -3,10 +3,6 @@ audiobait-pkg:
     - name: audiobait
     - version: "2.0.0"
 
-/etc/audiobait.yaml:
-  file.managed:
-    - source: salt://pi/audiobait/audiobait.yaml
-
 /var/lib/audiobait:
   file.directory
 
@@ -16,4 +12,3 @@ audiobait-service:
     - enable: True
     - watch:
       - audiobait-pkg
-      - /etc/audiobait.yaml
