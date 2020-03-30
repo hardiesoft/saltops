@@ -1,7 +1,8 @@
 attiny-controller-pkg:
-  cacophony.pkg_installed_from_github:
+  fever.pkg_installed_from_github:
     - name: attiny-controller
     - version: "3.3.0"
+    - cacophony_project: True
 
 attiny-controller-service:
   service.running:

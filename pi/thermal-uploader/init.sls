@@ -1,7 +1,8 @@
 thermal-uploader-pkg:
-  cacophony.pkg_installed_from_github:
+  fever.pkg_installed_from_github:
     - name: thermal-uploader
     - version: "2.2.0"
+    - cacophony_project: True
 
 thermal-uploader-service:
   service.running:
@@ -10,6 +11,3 @@ thermal-uploader-service:
     - watch:
       - thermal-uploader-pkg
 
-# Remove files from old thermal-uploader versions
-/opt/cacophony/thermal-uploader:
-  file.absent: []

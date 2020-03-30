@@ -22,11 +22,8 @@ dont_start_fake_hwclock_if_rtc_exists:
 
 
 rtc-utils-pkg:
-  cacophony.pkg_installed_from_github:
+  fever.pkg_installed_from_github:
     - name: rtc-utils
     - version: "1.3.0"
+    - cacophony_project: True
 
-# This has been replaced by /etc/cron.daily/sync-rtc which is
-# installed by the rtc-utils package
-/etc/cron.daily/update-rtc:
-  file.absent: []
