@@ -1,3 +1,53 @@
+fever-test:
+  fever-test-pis:
+    - match: nodegroup
+    - pi/start
+    - pi/removed
+    - timezone
+    - pi/config
+    - pi/basics
+    - pi/auth
+    - pi/salt-minion
+    - pi/wpa
+    - pi/rtc
+    - pi/watchdog
+    - pi/modemd
+    - pi/attiny-controller
+    - pi/event-reporter
+    - pi/thermal-uploader
+    - pi/device-register
+    - pi/energy-savings
+    - pi/feverscreen
+    - pi/maybe-reboot
+    - pi/end
+
+#-----------------------------------
+
+fever:
+  fever-pis:
+    - match: nodegroup
+    - pi/start
+    - pi/removed
+    - timezone
+    - pi/config
+    - pi/basics
+    - pi/auth
+    - pi/salt-minion
+    - pi/wpa
+    - pi/rtc
+    - pi/watchdog
+    - pi/modemd
+    - pi/attiny-controller
+    - pi/event-reporter
+    - pi/thermal-uploader
+    - pi/device-register
+    - pi/energy-savings
+    - pi/feverscreen
+    - pi/maybe-reboot
+    - pi/end
+
+#-----------------------------------
+
 test:
   test-servers:
     - match: nodegroup
