@@ -1,6 +1,7 @@
 base:
   '*':
     - pi/start
+    - pi/removed
     - timezone
     - pi/config
     - pi/basics
@@ -11,14 +12,10 @@ base:
     - pi/watchdog
     - pi/modemd
     - pi/attiny-controller
-    - pi/audio
     - pi/event-reporter
-    - pi/audiobait
-    - pi/thermal-recorder
     - pi/thermal-uploader
-    - pi/management-interface
     - pi/device-register
     - pi/energy-savings
-    - pi/removed
+    - pi/feverscreen
     - pi/maybe-reboot
     - pi/end
