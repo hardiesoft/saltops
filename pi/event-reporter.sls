@@ -1,7 +1,8 @@
 event-reporter-pkg:
-  cacophony.pkg_installed_from_github:
+  fever.pkg_installed_from_github:
     - name: event-reporter
     - version: "3.1.0"
+    - cacophony_project: True
 
 event-reporter-service:
   service.running:
