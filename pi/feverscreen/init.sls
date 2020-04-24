@@ -1,7 +1,7 @@
 feverscreen-pkg:
   fever.pkg_installed_from_github:
     - name: feverscreen
-    - version: "0.1.0"
+    - version: "0.2.1"
 
 feverscreen-service:
   service.running:
