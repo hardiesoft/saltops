@@ -3,6 +3,7 @@ fever-test:
     - match: nodegroup
     - pi/start
     - pi/removed
+    - salt-migration
     - timezone
     - pi/config
     - pi/basics
