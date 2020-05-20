@@ -6,6 +6,7 @@ reboot_after_boot_changes:
       - /boot/config.txt
       - /boot/cmdline.txt
       - /etc/modules
+      - /etc/salt/pki/minion/minion_master.pub
 
 reboot_for_config_import:
   module.run:
