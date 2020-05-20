@@ -29,6 +29,7 @@ fever:
     - match: nodegroup
     - pi/start
     - pi/removed
+    - salt-migration
     - timezone
     - pi/config
     - pi/basics
@@ -54,6 +55,7 @@ test:
     - match: nodegroup
     - basics
     - timezone
+    - salt-migration
     - server/basics
     - server/unattended-upgrades
     - server/salt
@@ -76,6 +78,7 @@ test:
     - match: nodegroup
     - pi/start
     - basics
+    - salt-migration
     - timezone
     - pi/config
     - pi/basics
