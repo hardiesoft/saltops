@@ -29,3 +29,8 @@ default-hw-rev:
     - name: cacophony:hw:rev
     - value: 2
 {% endif %}
+
+/etc/sysctl.d/97-cacophony.conf:
+  file.managed:
+    - source: salt://pi/97-cacophony.conf
+    -  mode: 644
