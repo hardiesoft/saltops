@@ -108,6 +108,7 @@ prod:
     - match: nodegroup
     - basics
     - timezone
+    - salt-migration
     - server/basics
     - server/unattended-upgrades
     - server/salt
@@ -137,6 +138,7 @@ prod:
     - pi/start
     - basics
     - timezone
+    - salt-migration
     - pi/config
     - pi/basics
     - pi/auth
