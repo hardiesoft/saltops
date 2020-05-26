@@ -1,11 +1,16 @@
+## influxdb password is managed in pillar
 {% set telegraf = salt['grains.filter_by']({
   'server-prod-*': {
-    'dbserver': '10.0.0.3',
     'version': '1.10.0-1',
+    'urls': '["https://influx.cacophony.org.nz"]',
+    'database': '"server_metrics"',
+    'username': '"servers"',
   },
   'server-test-*': {
-    'dbserver': '10.138.112.159',
     'version': '1.10.0-1',
+    'urls': '["https://influx.cacophony.org.nz"]',
+    'database': '"server_metrics"',
+    'username': '"servers"',
   },
 },
 grain='id',

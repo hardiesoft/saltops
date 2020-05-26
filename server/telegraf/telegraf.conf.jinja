@@ -27,8 +27,10 @@
 
 # Configuration for influxdb server to send metrics to
 [[outputs.influxdb]]
-  urls = ["http://{{ telegraf.dbserver -}}:8086"]
-  database = "server_metrics" 
+  urls = {{ telegraf.urls }}
+  database = {{ telegraf.database }}
+  username = {{ telegraf.username }}
+  password = {{ pillar['influx']['password'] }}
   retention_policy = ""
   write_consistency = "any"
   timeout = "5s"
