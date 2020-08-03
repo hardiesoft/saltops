@@ -1,2 +1,2 @@
 # Update feverscreen every day at 10am
-0 10 * * * root apt-get update; apt-get -y --only-upgrade install feverscreen
+0 10 * * * root sudo apt-get update; sudo apt-get -y --only-upgrade install feverscreen
