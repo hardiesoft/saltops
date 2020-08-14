@@ -30,22 +30,6 @@ audiobait:
 /usr/local/bin/change-identity:
    file.absent
 
-# Ensure that Dataplicity is uninstalled
-supervisor:
-  pkg.purged
-
-supervisord:
-  process.absent
-
-dataplicity:
-  process.absent
-
-/opt/dataplicity:
-  file.absent
-
-/etc/supervisor:
-  file.absent
-
 /opt/cacophony/thermal-recorder:
   file.absent: []
 
@@ -94,46 +78,3 @@ bluez-firmware:
 
 pi-bluetooth:
   pkg.purged
-
-########################################################
-#  Archive old config files
-########################################################
-
-/etc/cacophony/archive:
-  file.directory
-
-/etc/cacophony/archive/attiny.yaml:
-    file.rename:
-      - source: /etc/cacophony/attiny.yaml
-
-/etc/cacophony/archive/modemd.yaml:
-    file.rename:
-      - source: /etc/cacophony/modemd.yaml
-
-/etc/cacophony/archive/leptond.yaml:
-    file.rename:
-      - source: /etc/leptond.yaml
-
-/etc/cacophony/archive/thermal-recorder.yaml:
-    file.rename:
-      - source: /etc/thermal-recorder.yaml
-
-/etc/cacophony/archive/location.yaml:
-    file.rename:
-      - source: /etc/cacophony/location.yaml
-
-/etc/cacophony/archive/device.yaml:
-    file.rename:
-      - source: /etc/cacophony/device.yaml
-
-/etc/cacophony/archive/device-priv.yaml:
-    file.rename:
-      - source: /etc/cacophony/device-priv.yaml
-
-/etc/cacophony/archive/managementd.yaml:
-    file.rename:
-      - source: /etc/cacophony/managementd.yaml
-
-/etc/cacophony/archive/audiobait.yaml:
-    file.rename:
-      - source: /etc/audiobait.yaml
