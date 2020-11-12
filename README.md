@@ -5,12 +5,12 @@
 The `dev` branch is updated normally through PRs.
 ### Updating test.
 The `test` branch is updated through pulling the latest changes from `dev`:
-- `git checout -b update-test origin/test`
+- `git checkout -b update-test origin/test`
 - `git merge origin/dev`
 - Push changes to personal fork and make a PR on GitHub
 
 ### Updating prod
 The `prod` branch is updated through pulling the latest changes from `test`. This should only be done when the changes in test have been tested fully:
-- `git checout -b update-prod origin/prod`
+- `git checkout -b update-prod origin/prod`
 - `git merge origin/test`
 - Push changes to personal fork and make a PR on GitHub
