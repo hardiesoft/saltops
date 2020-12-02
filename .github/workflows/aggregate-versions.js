@@ -82,7 +82,7 @@ const findKeyInObject = (obj, key) => {
             output = readme;
         }
         output += "\n\n#### Version information ";
-        output += `(_Updated ${now.toLocaleString("en-GB", {timeZone: "Pacific/Auckland"})}_):\n`;
+        output += `(_Updated ${now.toLocaleString("en-NZ", {timeZone: "Pacific/Auckland"})}_):\n`;
         output += separator;
         output += versionOutput;
         if (versionOutput !== prevVersionOutput) {
