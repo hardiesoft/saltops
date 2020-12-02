@@ -67,6 +67,7 @@ if (versionInfoStart !== -1) {
 } else {
     output = readme;
 }
+// Bump git.
 output += "\n\n#### Version information ";
 output += `(_Updated ${now.toLocaleDateString("en-NZ", { timeZone: "Pacific/Auckland" })}, ${now.toLocaleTimeString("en-NZ", { timeZone: "Pacific/Auckland" })}_):\n`;
 output += separator;
