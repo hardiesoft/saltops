@@ -1,11 +1,7 @@
 name: aggregate-version-info
-on:
-  push:
-    branches: [ dev, prod, test ]
-  workflow_dispatch:
-    branches: [ dev, prod, test ]
+on: [push, workflow_dispatch]
 jobs:
-  aggregate-version-info: # per branch
+  aggregate-version-info:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,18 +21,6 @@ jobs:
           node-version: 12.x
       - shell: bash
         run: |
-          ls -la
-#        run: |
-#          cd ./.github/workflows
-#          npm i
-#          writeout=$(node --no-warnings run.js)
-#          if [[ $writeout != unchanged* ]]
-#          then
-#            echo "updating readme.md"
-#            cd ../../
-#            git config user.name github-actions
-#            git config user.email github-actions@github.com
-#            git add .
-#            git commit -m "updated version information"
-#            git push
-#          fi
+          cd dev/.github/workflows
+          npm i
+          node --no-warnings run.js
