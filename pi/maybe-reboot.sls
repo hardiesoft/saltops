@@ -1,7 +1,7 @@
 reboot_after_boot_changes:
   module.run:
     - name: system.reboot
-    - at_time: 1
+    - at_time: 2
     - onchanges:
       - /boot/config.txt
       - /boot/cmdline.txt
