@@ -1,3 +1,6 @@
+# Checkout all three branches, aggregate version info, and commit changes
+# to each branch if any of the version information in any branch has changed.
+
 name: aggregate-version-info
 on: [push, workflow_dispatch]
 jobs:
@@ -23,4 +26,4 @@ jobs:
         run: |
           cd dev/.github/workflows
           npm i
-          node --no-warnings run.js
+          npm run aggregate-versions

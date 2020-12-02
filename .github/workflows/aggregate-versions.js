@@ -42,7 +42,7 @@ const findKeyInObject = (obj, key) => {
     let versionOutput = "";
 
     process.chdir("../../../");
-// For each branch:
+    // For each branch:
     const branches = ["dev", "test", "prod"];
     for (const branch of branches) {
         process.chdir(`./${branch}`);
@@ -62,14 +62,13 @@ const findKeyInObject = (obj, key) => {
         process.chdir("../");
     }
 
-// Output the text to the README.md file, if the version info has changed since last time.
+    // Output the text to the README.md file, if the version info has changed since last time.
     for (const branch of branches) {
         versionOutput += `#### Branch \`${branch}\`\n`;
         for (const [key, val] of Object.entries(versionData[branch])) {
             versionOutput += ` * ${key}: ${val}\n`;
         }
     }
-    //console.log("Version output", versionOutput);
     for (const branch of branches) {
         let prevVersionOutput = "";
         process.chdir(`./${branch}`);
@@ -83,7 +82,7 @@ const findKeyInObject = (obj, key) => {
             output = readme;
         }
         output += "\n\n#### Version information ";
-        output += `(_Updated ${now.toLocaleString("en-NZ", {timeZone: "Pacific/Auckland"})}_):\n`;
+        output += `(_Updated ${now.toLocaleString("en-GB", {timeZone: "Pacific/Auckland"})}_):\n`;
         output += separator;
         output += versionOutput;
         if (versionOutput !== prevVersionOutput) {

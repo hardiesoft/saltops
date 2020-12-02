@@ -2,7 +2,7 @@
   "name": "workflows",
   "type": "module",
   "scripts": {
-    "aggregate": "node --no-warnings run.js"
+    "aggregate-versions": "node --no-warnings aggregate-versions.js"
   },
   "version": "1.0.0",
   "dependencies": {
