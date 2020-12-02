@@ -49,6 +49,7 @@ for (const path of slsFiles) {
     } catch (e) {}
 }
 
+// TODO(jon): Only update if version information has changed:
 const readme = fs.readFileSync("README.md", "utf8");
 const versionInfoStart = readme.indexOf("### Version information:\n");
 let output;
