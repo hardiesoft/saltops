@@ -10,7 +10,9 @@ jobs:
         with:
           node-version: 12.x
       - shell: bash
-        run: echo "console.log(process.env.PWD)" | node # ./.github/scripts/aggregate.js
+        run: | 
+            echo "console.log(process.env.PWD)" | node 
+        # ./.github/scripts/aggregate.js
 #       - name: Upload output file
 #         uses: actions/upload-artifact@v1
 #         with:
