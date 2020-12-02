@@ -20,8 +20,6 @@ const getFilesWithExtension = (path, ext) => {
     }
     return files;
 }
-const slsFiles = getFilesWithExtension(".", "sls");
-
 const findKeyInObject = (obj, key) => {
     for (const [k, v] of Object.entries(obj)) {
         if (k === key) {
@@ -69,9 +67,10 @@ for (const branch of branches) {
         versionOutput += ` * ${key}: ${val}\n`;
     }
 }
-
+console.log("Version output", versionOutput);
 for (const branch of branches) {
     process.chdir(`./${branch}`);
+    console.log("in branch", branch, exec("ls -la"));
     const readme = fs.readFileSync("README.md", "utf8");
     const versionInfoStart = readme.indexOf("\n\n#### Version information");
     let output;
@@ -87,11 +86,11 @@ for (const branch of branches) {
     output += versionOutput;
     if (versionOutput !== prevVersionOutput) {
         fs.writeFileSync("README.md", output);
-        exec("git config user.name github-actions");
-        exec("git config user.email github-actions@github.com");
-        exec("git add .");
-        exec("git commit -m \"updated version information\"");
-        exec("git push");
+        // exec("git config user.name github-actions");
+        // exec("git config user.email github-actions@github.com");
+        // exec("git add .");
+        // exec("git commit -m \"updated version information\"");
+        // exec("git push");
 
     } else {
         // Version info is unchanged.
