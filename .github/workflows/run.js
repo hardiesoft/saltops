@@ -48,6 +48,6 @@ for (const path of slsFiles) {
         versionData[name] = version;
     } catch (e) {}
 }
-console.log(versionData);
+fs.writeFileSync("versions.md", versionData);
 
 
