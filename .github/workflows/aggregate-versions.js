@@ -35,6 +35,14 @@ const findKeyInObject = (obj, key) => {
     }
     return false;
 }
+const formatDate = date => {
+    const dateString = date.toLocaleString("en-NZ", {timeZone: "Pacific/Auckland"});
+    // Node on github actions only has US localization, so we need to swap day and month:
+    const firstPart = dateString.split(",")[0];
+    const pieces = firstPart.split("/");
+    return `${pieces[1]}/${pieces[0]}/${pieces[2]},${dateString.split(',')[1]}`;
+}
+
 (async function () {
     const versionData = {};
     const now = new Date();
@@ -82,7 +90,7 @@ const findKeyInObject = (obj, key) => {
             output = readme;
         }
         output += "\n\n#### Version information ";
-        output += `(_Updated ${now.toLocaleString("en-NZ", {timeZone: "Pacific/Auckland"})}_):\n`;
+        output += `(_Updated ${formatDate(now)}_):\n`;
         output += separator;
         output += versionOutput;
         if (versionOutput !== prevVersionOutput) {
