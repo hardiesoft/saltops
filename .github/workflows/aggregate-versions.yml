@@ -1,5 +1,9 @@
 name: aggregate-version-info
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [ dev, prod, test ]
+  workflow_dispatch:
+    branches: [ dev, prod, test ]
 jobs:
   aggregate-version-info: # per branch
     runs-on: ubuntu-latest
