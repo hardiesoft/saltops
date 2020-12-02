@@ -1,7 +1,8 @@
 import yaml from "yaml";
 import fs from "fs";
 
-//process.chdir("../../");
+process.chdir("../../");
+
 const getFilesWithExtension = (path, ext) => {
     const items = fs.readdirSync(path)
         .filter(item => (
