@@ -1,13 +1,14 @@
-name: learn-github-actions
+name: aggregate-version-info
 on: [workflow_dispatch]
 jobs:
-  check-bats-version:
+  aggregate-version-info: # per branch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.1.2
         with:
           node-version: 12.x
-      - run: npm install -g bats
-      - run: bats -v
-            
+      - shell: bash
+        run: |
+          npm i
+          npm run aggregate
