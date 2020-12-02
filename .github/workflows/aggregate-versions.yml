@@ -1,5 +1,5 @@
 name: aggregate-version-info
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 jobs:
   aggregate-version-info: # per branch
     runs-on: ubuntu-latest
