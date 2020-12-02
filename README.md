@@ -15,9 +15,9 @@ The `prod` branch is updated through pulling the latest changes from `test`. Thi
 - `git merge origin/test`
 - Push changes to personal fork and make a PR on GitHub
 
-#### Version information (_Updated 12/2/2020, 5:01:59 PM_):
+#### Version information (_Updated 12/2/2020, 5:11:55 PM_):
 ____
- * attiny-controller: 3.4.0
+ * attiny-controller: 3.4.1
  * audiobait: 2.2.0
  * go-config: 1.3.1
  * device-register: 1.1.0
