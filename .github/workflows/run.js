@@ -75,7 +75,7 @@ if (versionOutput !== prevVersionOutput) {
     fs.writeFileSync("README.md", output);
 } else {
     // Version info is unchanged.
-    console.log("version info unchanged");
+    console.log("unchanged");
 }
 process.exit(0);
 

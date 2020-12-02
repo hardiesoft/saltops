@@ -13,7 +13,7 @@ jobs:
           cd ./.github/workflows
           npm i
           writeout=$(node --no-warnings run.js)
-          if [ $writeout != "version info unchanged" ]
+          if [[ $writeout != unchanged* ]]
           then
             echo "updating readme.md"
             cd ../../
