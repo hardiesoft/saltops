@@ -40,7 +40,6 @@ const findKeyInObject = (obj, key) => {
     const now = new Date();
     const separator = "____\n";
     let versionOutput = "";
-    let prevVersionOutput = "";
 
     process.chdir("../../../");
 // For each branch:
@@ -70,11 +69,10 @@ const findKeyInObject = (obj, key) => {
             versionOutput += ` * ${key}: ${val}\n`;
         }
     }
-    console.log("Version output", versionOutput);
+    //console.log("Version output", versionOutput);
     for (const branch of branches) {
+        let prevVersionOutput = "";
         process.chdir(`./${branch}`);
-        const {stdout, stderr} = await exec("ls -la");
-        console.log("in branch", branch, stdout);
         const readme = fs.readFileSync("README.md", "utf8");
         const versionInfoStart = readme.indexOf("\n\n#### Version information");
         let output;
@@ -90,15 +88,16 @@ const findKeyInObject = (obj, key) => {
         output += versionOutput;
         if (versionOutput !== prevVersionOutput) {
             fs.writeFileSync("README.md", output);
-            // exec("git config user.name github-actions");
-            // exec("git config user.email github-actions@github.com");
-            // exec("git add .");
-            // exec("git commit -m \"updated version information\"");
-            // exec("git push");
+            console.log("Committing changes for branch", branch);
+            await exec("git config user.name github-actions");
+            await exec("git config user.email github-actions@github.com");
+            await exec("git add .");
+            await exec("git commit -m \"updated version information\"");
+            await exec("git push");
 
         } else {
             // Version info is unchanged.
-            console.log("unchanged");
+            console.log("version information unchanged");
         }
         process.chdir("../");
     }
