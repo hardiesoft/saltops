@@ -67,18 +67,16 @@ if (versionInfoStart !== -1) {
 } else {
     output = readme;
 }
-// Bump git.
 output += "\n\n#### Version information ";
 output += `(_Updated ${now.toLocaleDateString("en-NZ", { timeZone: "Pacific/Auckland" })}, ${now.toLocaleTimeString("en-NZ", { timeZone: "Pacific/Auckland" })}_):\n`;
 output += separator;
 output += versionOutput;
 if (versionOutput !== prevVersionOutput) {
     fs.writeFileSync("README.md", output);
-    process.exit(0);
 } else {
     // Version info is unchanged.
     console.log("version info unchanged");
-    process.exit(1);
 }
+process.exit(0);
 
 
