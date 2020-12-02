@@ -12,11 +12,14 @@ jobs:
         run: |
           cd ./.github/workflows
           npm i
-          npm run aggregate
-          cd ../../
-          ls -la
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "updated version information"
-          git push
+          writeout=$(node --no-warnings run.js)
+          if [ writeout != "version info unchanged" ]
+          then
+            echo "updating readme.md"
+            cd ../../
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add .
+            git commit -m "updated version information"
+            git push
+          fi

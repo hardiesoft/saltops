@@ -49,19 +49,35 @@ for (const path of slsFiles) {
     } catch (e) {}
 }
 
-// TODO(jon): Only update if version information has changed:
-const readme = fs.readFileSync("README.md", "utf8");
-const versionInfoStart = readme.indexOf("### Version information:\n");
-let output;
-if (versionInfoStart) {
-    output = readme.substring(0, versionInfoStart);
-} else {
-    output = readme + "\n### Version information:\n";
-}
-output += `#### Updated ${new Date().toLocaleDateString("en-NZ", { timeZone: "Pacific/Auckland" })}`;
+// Output the text to the README.md file, if the version info has changed since last time.
+const now = new Date();
+const separator = "____\n";
+let versionOutput = "";
+let prevVersionOutput = ""
 for (const [key, val] of Object.entries(versionData)) {
-    output += ` * ${key}: ${val}\n`;
+    versionOutput += ` * ${key}: ${val}\n`;
 }
-fs.writeFileSync("README.md", output);
+const readme = fs.readFileSync("README.md", "utf8");
+const versionInfoStart = readme.indexOf("\n\n#### Version information");
+
+let output;
+if (versionInfoStart !== -1) {
+    output = readme.substring(0, versionInfoStart);
+    prevVersionOutput = readme.substring(readme.indexOf(separator) + separator.length);
+} else {
+    output = readme;
+}
+output += "\n\n#### Version information ";
+output += `(_Updated ${now.toLocaleDateString("en-NZ", { timeZone: "Pacific/Auckland" })}, ${now.toLocaleTimeString("en-NZ", { timeZone: "Pacific/Auckland" })}_):\n`;
+output += separator;
+output += versionOutput;
+if (versionOutput !== prevVersionOutput) {
+    fs.writeFileSync("README.md", output);
+    process.exit(0);
+} else {
+    // Version info is unchanged.
+    console.log("version info unchanged");
+    process.exit(1);
+}
 
 
