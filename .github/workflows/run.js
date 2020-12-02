@@ -48,6 +48,10 @@ for (const path of slsFiles) {
         versionData[name] = version;
     } catch (e) {}
 }
-fs.writeFileSync("versions.md", versionData);
+let output = "### Version information\n";
+for (const [key, val] of Object.entries(versionData)) {
+    output += ` * ${key}: ${val}\n`;
+}
+fs.writeFileSync("versions.md", output);
 
 
