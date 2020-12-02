@@ -48,10 +48,19 @@ for (const path of slsFiles) {
         versionData[name] = version;
     } catch (e) {}
 }
-let output = "### Version information\n";
+
+const readme = fs.readFileSync("README.md", "utf8");
+const versionInfoStart = readme.indexOf("### Version information:\n");
+let output;
+if (versionInfoStart) {
+    output = readme.substring(0, versionInfoStart);
+} else {
+    output = readme + "\n### Version information:\n";
+}
+output += `#### Updated ${new Date().toLocaleDateString("en-NZ", { timeZone: "Pacific/Auckland" })}`;
 for (const [key, val] of Object.entries(versionData)) {
     output += ` * ${key}: ${val}\n`;
 }
-fs.writeFileSync("versions.md", output);
+fs.writeFileSync("README.md", output);
 
 
